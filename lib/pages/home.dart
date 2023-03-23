@@ -38,7 +38,18 @@ class _HomeState extends State<Home> {
         future: futureData,
         builder: (context, AsyncSnapshot<HotelList> snapshot) {
           if (snapshot.hasData) {
-            return ListWidget(hotelData: snapshot.data ?? HotelList());
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  ListWidget(
+                    hotelData: snapshot.data ?? HotelList(),
+                  ),
+                  ListWidget(
+                    hotelData: snapshot.data ?? HotelList(),
+                  ),
+                ],
+              ),
+            );
           } else if (snapshot.hasError) {
             return Center(
               child: Text('Error: ${snapshot.error}'),
