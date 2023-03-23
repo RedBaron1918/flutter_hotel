@@ -17,26 +17,28 @@ class ListWidget extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: hotelData.rooms?.length,
       itemBuilder: (context, index) {
-        final test = hotelData.rooms![index];
-        return SizedBox(
-          width: 100,
-          height: 100,
-          child: ListTile(
-            title: Text(
-              test?.description ?? '',
-            ),
-            leading: Image.network(
-              test?.photos![index].urlOriginal ?? '',
-            ),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => Placeholder(),
-                ),
-              );
-            },
-          ),
-        );
+        final test = hotelData.rooms?.values;
+        print(hotelData.rooms?.values);
+        return SizedBox.shrink();
+        // return SizedBox(
+        //   width: 100,
+        //   height: 100,
+        //   child: ListTile(
+        //     title: Text(
+        //       test?.description ?? '',
+        //     ),
+        //     leading: Text(
+        //       test?.description ?? '',
+        //     ),
+        //     onTap: () {
+        //       Navigator.of(context).push(
+        //         MaterialPageRoute(
+        //           builder: (context) => Placeholder(),
+        //         ),
+        //       );
+        //     },
+        //   ),
+        // );
       },
     );
   }
