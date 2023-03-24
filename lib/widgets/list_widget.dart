@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:hotelflutter/widgets/detail_widget.dart';
 import '../model/hotel.dart';
 
 class ListWidget extends StatelessWidget {
   const ListWidget({
-    super.key,
+    Key? key,
     required this.hotelData,
-  });
+  }) : super(key: key);
 
   final HotelList hotelData;
 
@@ -19,7 +19,6 @@ class ListWidget extends StatelessWidget {
       itemBuilder: (context, index) {
         final data = hotelData.rooms?.values.elementAt(index);
         final name = hotelData.block?[index].nameWithoutPolicy;
-        print(hotelData.totalBlocks);
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Card(
@@ -36,8 +35,7 @@ class ListWidget extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => DetailWidget(
-                      imageUrl: data?.photos?[0].url640X200 ?? '',
-                      description: data?.description ?? '',
+                      data: data,
                     ),
                   ),
                 );
@@ -46,36 +44,6 @@ class ListWidget extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class DetailWidget extends StatelessWidget {
-  const DetailWidget({
-    Key? key,
-    required this.imageUrl,
-    required this.description,
-  }) : super(key: key);
-
-  final String imageUrl;
-  final String description;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Image.network(
-            imageUrl,
-          ),
-          Text(
-            description,
-            style: TextStyle(fontSize: 18.0),
-          ),
-        ],
-      ),
     );
   }
 }
