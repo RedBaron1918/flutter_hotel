@@ -44,9 +44,6 @@ class _HomeState extends State<Home> {
                   ListWidget(
                     hotelData: snapshot.data ?? HotelList(),
                   ),
-                  ListWidget(
-                    hotelData: snapshot.data ?? HotelList(),
-                  ),
                 ],
               ),
             );

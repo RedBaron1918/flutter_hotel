@@ -17,7 +17,9 @@ class ListWidget extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: hotelData.rooms?.length,
       itemBuilder: (context, index) {
-        final data = hotelData.rooms?.values.elementAt(index);
+        final roomId = int.parse(hotelData.rooms!.keys.elementAt(index));
+        final room = hotelData.rooms?[roomId.toString()]!;
+        final block = hotelData.block?.firstWhere((b) => b.roomId == roomId);
         final name = hotelData.block?[index].nameWithoutPolicy;
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
@@ -28,14 +30,14 @@ class ListWidget extends StatelessWidget {
                 name ?? '',
               ),
               leading: Image.network(
-                data?.photos?[0].url640X200 ?? "loading",
+                room?.photos?[0].url640X200 ?? "loading",
                 alignment: Alignment.centerLeft,
               ),
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => DetailWidget(
-                      data: data,
+                      block: block,
                     ),
                   ),
                 );

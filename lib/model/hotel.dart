@@ -42,20 +42,732 @@ class HotelList {
 
 class Block {
   Block({
-    this.nameWithoutPolicy,
+    this.priceBreakdown,
     this.name,
+    this.rateTypeId,
+    this.extrabedAvailable,
+    this.nameWithoutPolicy,
+    this.refundable,
+    this.isBlockFit,
+    this.mealplan,
+    this.refundableUntil,
+    this.blockText,
+    this.paymentterms,
+    this.roomId,
+    this.minPrice,
+    this.blockId,
+    this.roomtypeId,
+    this.incrementalPrice,
+    this.detailMealplan,
+    this.dinnerIncluded,
+    this.roomSurfaceInM2,
+    this.roomCount,
+    this.maxOccupancy,
+    this.productPriceBreakdown,
+    this.roomName,
+    this.fullBoard,
+    this.lunchIncluded,
+    this.isMobileDeal,
+    this.breakfastIncluded,
   });
+
+  PriceBreakdown? priceBreakdown;
   String? name;
+  int? rateTypeId;
+  int? extrabedAvailable;
   String? nameWithoutPolicy;
+  int? refundable;
+  int? isBlockFit;
+  String? mealplan;
+  String? refundableUntil;
+  BlockText? blockText;
+  Paymentterms? paymentterms;
+  int? roomId;
+  MinPrice? minPrice;
+  String? blockId;
+  int? roomtypeId;
+  List<IncrementalPrice>? incrementalPrice;
+  List<DetailMealplan>? detailMealplan;
+  int? dinnerIncluded;
+  int? roomSurfaceInM2;
+  int? roomCount;
+  int? maxOccupancy;
+  ProductPriceBreakdown? productPriceBreakdown;
+  String? roomName;
+  int? fullBoard;
+  int? lunchIncluded;
+  int? isMobileDeal;
+  int? breakfastIncluded;
 
   factory Block.fromJson(Map<String, dynamic> json) => Block(
+        priceBreakdown: json["price_breakdown"] == null
+            ? null
+            : PriceBreakdown.fromJson(json["price_breakdown"]),
         name: json["name"],
+        rateTypeId: json["rate_type_id"],
+        extrabedAvailable: json["extrabed_available"],
         nameWithoutPolicy: json["name_without_policy"],
+        refundable: json["refundable"],
+        isBlockFit: json["is_block_fit"],
+        mealplan: json["mealplan"],
+        refundableUntil: json["refundable_until"],
+        blockText: json["block_text"] == null
+            ? null
+            : BlockText.fromJson(json["block_text"]),
+        paymentterms: json["paymentterms"] == null
+            ? null
+            : Paymentterms.fromJson(json["paymentterms"]),
+        roomId: json["room_id"],
+        minPrice: json["min_price"] == null
+            ? null
+            : MinPrice.fromJson(json["min_price"]),
+        blockId: json["block_id"],
+        roomtypeId: json["roomtype_id"],
+        incrementalPrice: json["incremental_price"] == null
+            ? []
+            : List<IncrementalPrice>.from(json["incremental_price"]!
+                .map((x) => IncrementalPrice.fromJson(x))),
+        detailMealplan: json["detail_mealplan"] == null
+            ? []
+            : List<DetailMealplan>.from(json["detail_mealplan"]!
+                .map((x) => DetailMealplan.fromJson(x))),
+        dinnerIncluded: json["dinner_included"],
+        roomSurfaceInM2: json["room_surface_in_m2"],
+        roomCount: json["room_count"],
+        maxOccupancy: json["max_occupancy"],
+        productPriceBreakdown: json["product_price_breakdown"] == null
+            ? null
+            : ProductPriceBreakdown.fromJson(json["product_price_breakdown"]),
+        roomName: json["room_name"],
+        fullBoard: json["full_board"],
+        lunchIncluded: json["lunch_included"],
+        isMobileDeal: json["is_mobile_deal"],
+        breakfastIncluded: json["breakfast_included"],
       );
 
   Map<String, dynamic> toJson() => {
+        "price_breakdown": priceBreakdown?.toJson(),
         "name": name,
+        "rate_type_id": rateTypeId,
+        "extrabed_available": extrabedAvailable,
         "name_without_policy": nameWithoutPolicy,
+        "refundable": refundable,
+        "is_block_fit": isBlockFit,
+        "mealplan": mealplan,
+        "refundable_until": refundableUntil,
+        "block_text": blockText?.toJson(),
+        "paymentterms": paymentterms?.toJson(),
+        "room_id": roomId,
+        "min_price": minPrice?.toJson(),
+        "block_id": blockId,
+        "roomtype_id": roomtypeId,
+        "incremental_price": incrementalPrice == null
+            ? []
+            : List<dynamic>.from(incrementalPrice!.map((x) => x.toJson())),
+        "detail_mealplan": detailMealplan == null
+            ? []
+            : List<dynamic>.from(detailMealplan!.map((x) => x.toJson())),
+        "dinner_included": dinnerIncluded,
+        "room_surface_in_m2": roomSurfaceInM2,
+        "room_count": roomCount,
+        "max_occupancy": maxOccupancy,
+        "product_price_breakdown": productPriceBreakdown?.toJson(),
+        "room_name": roomName,
+        "full_board": fullBoard,
+        "lunch_included": lunchIncluded,
+        "is_mobile_deal": isMobileDeal,
+        "breakfast_included": breakfastIncluded,
+      };
+}
+
+class BlockText {
+  BlockText({
+    this.policies,
+  });
+
+  List<Policy>? policies;
+
+  factory BlockText.fromJson(Map<String, dynamic> json) => BlockText(
+        policies: json["policies"] == null
+            ? []
+            : List<Policy>.from(
+                json["policies"]!.map((x) => Policy.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "policies": policies == null
+            ? []
+            : List<dynamic>.from(policies!.map((x) => x.toJson())),
+      };
+}
+
+class Policy {
+  Policy({
+    this.policyClass,
+    this.content,
+    this.mealplanVector,
+    this.price,
+    this.currencycode,
+  });
+
+  String? policyClass;
+  String? content;
+  String? mealplanVector;
+  num? price;
+  String? currencycode;
+
+  factory Policy.fromJson(Map<String, dynamic> json) => Policy(
+        policyClass: json["class"],
+        content: json["content"],
+        mealplanVector: json["mealplan_vector"],
+        price: json["price"],
+        currencycode: json["currencycode"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "class": policyClass,
+        "content": content,
+        "mealplan_vector": mealplanVector,
+        "price": price,
+        "currencycode": currencycode,
+      };
+}
+
+class DetailMealplan {
+  DetailMealplan({
+    this.currency,
+    this.price,
+    this.title,
+    this.icon,
+  });
+
+  String? currency;
+  num? price;
+  String? title;
+  String? icon;
+
+  factory DetailMealplan.fromJson(Map<String, dynamic> json) => DetailMealplan(
+        currency: json["currency"],
+        price: json["price"],
+        title: json["title"],
+        icon: json["icon"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "currency": currency,
+        "price": price,
+        "title": title,
+        "icon": icon,
+      };
+}
+
+class IncrementalPrice {
+  IncrementalPrice({
+    this.extraChargesBreakdown,
+    this.currency,
+    this.price,
+  });
+
+  IncrementalPriceExtraChargesBreakdown? extraChargesBreakdown;
+  String? currency;
+  dynamic price;
+
+  factory IncrementalPrice.fromJson(Map<String, dynamic> json) =>
+      IncrementalPrice(
+        extraChargesBreakdown: json["extra_charges_breakdown"] == null
+            ? null
+            : IncrementalPriceExtraChargesBreakdown.fromJson(
+                json["extra_charges_breakdown"]),
+        currency: json["currency"],
+        price: json["price"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "extra_charges_breakdown": extraChargesBreakdown?.toJson(),
+        "currency": currency,
+        "price": price,
+      };
+}
+
+class IncrementalPriceExtraChargesBreakdown {
+  IncrementalPriceExtraChargesBreakdown({
+    this.netPrice,
+    this.extraCharge,
+  });
+
+  String? netPrice;
+  List<PurpleExtraCharge>? extraCharge;
+
+  factory IncrementalPriceExtraChargesBreakdown.fromJson(
+          Map<String, dynamic> json) =>
+      IncrementalPriceExtraChargesBreakdown(
+        netPrice: json["net_price"],
+        extraCharge: json["extra_charge"] == null
+            ? []
+            : List<PurpleExtraCharge>.from(json["extra_charge"]!
+                .map((x) => PurpleExtraCharge.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "net_price": netPrice,
+        "extra_charge": extraCharge == null
+            ? []
+            : List<dynamic>.from(extraCharge!.map((x) => x.toJson())),
+      };
+}
+
+class PurpleExtraCharge {
+  PurpleExtraCharge({
+    this.amount,
+    this.type,
+    this.currency,
+    this.name,
+    this.excluded,
+    this.chargeAmount,
+    this.inclusionType,
+    this.chargePriceMode,
+  });
+
+  dynamic amount;
+  String? type;
+  String? currency;
+  String? name;
+  num? excluded;
+  String? chargeAmount;
+  String? inclusionType;
+  num? chargePriceMode;
+
+  factory PurpleExtraCharge.fromJson(Map<String, dynamic> json) =>
+      PurpleExtraCharge(
+        amount: json["amount"],
+        type: json["type"],
+        currency: json["currency"],
+        name: json["name"],
+        excluded: json["excluded"],
+        chargeAmount: json["charge_amount"],
+        inclusionType: json["inclusion_type"],
+        chargePriceMode: json["charge_price_mode"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "amount": amount,
+        "type": type,
+        "currency": currency,
+        "name": name,
+        "excluded": excluded,
+        "charge_amount": chargeAmount,
+        "inclusion_type": inclusionType,
+        "charge_price_mode": chargePriceMode,
+      };
+}
+
+class MinPrice {
+  MinPrice({
+    this.price,
+    this.currency,
+    this.extraChargesBreakdown,
+  });
+
+  String? price;
+  String? currency;
+  MinPriceExtraChargesBreakdown? extraChargesBreakdown;
+
+  factory MinPrice.fromJson(Map<String, dynamic> json) => MinPrice(
+        price: json["price"],
+        currency: json["currency"],
+        extraChargesBreakdown: json["extra_charges_breakdown"] == null
+            ? null
+            : MinPriceExtraChargesBreakdown.fromJson(
+                json["extra_charges_breakdown"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "price": price,
+        "currency": currency,
+        "extra_charges_breakdown": extraChargesBreakdown?.toJson(),
+      };
+}
+
+class MinPriceExtraChargesBreakdown {
+  MinPriceExtraChargesBreakdown({
+    this.netPrice,
+    this.extraCharge,
+  });
+
+  String? netPrice;
+  List<FluffyExtraCharge>? extraCharge;
+
+  factory MinPriceExtraChargesBreakdown.fromJson(Map<String, dynamic> json) =>
+      MinPriceExtraChargesBreakdown(
+        netPrice: json["net_price"],
+        extraCharge: json["extra_charge"] == null
+            ? []
+            : List<FluffyExtraCharge>.from(json["extra_charge"]!
+                .map((x) => FluffyExtraCharge.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "net_price": netPrice,
+        "extra_charge": extraCharge == null
+            ? []
+            : List<dynamic>.from(extraCharge!.map((x) => x.toJson())),
+      };
+}
+
+class FluffyExtraCharge {
+  FluffyExtraCharge({
+    this.inclusionType,
+    this.chargeAmount,
+    this.chargePriceMode,
+    this.amount,
+    this.type,
+    this.currency,
+    this.name,
+    this.excluded,
+  });
+
+  String? inclusionType;
+  String? chargeAmount;
+  num? chargePriceMode;
+  String? amount;
+  String? type;
+  String? currency;
+  String? name;
+  num? excluded;
+
+  factory FluffyExtraCharge.fromJson(Map<String, dynamic> json) =>
+      FluffyExtraCharge(
+        inclusionType: json["inclusion_type"],
+        chargeAmount: json["charge_amount"],
+        chargePriceMode: json["charge_price_mode"],
+        amount: json["amount"],
+        type: json["type"],
+        currency: json["currency"],
+        name: json["name"],
+        excluded: json["excluded"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "inclusion_type": inclusionType,
+        "charge_amount": chargeAmount,
+        "charge_price_mode": chargePriceMode,
+        "amount": amount,
+        "type": type,
+        "currency": currency,
+        "name": name,
+        "excluded": excluded,
+      };
+}
+
+class Paymentterms {
+  Paymentterms({
+    this.prepayment,
+    this.cancellation,
+  });
+
+  Prepayment? prepayment;
+  Cancellation? cancellation;
+
+  factory Paymentterms.fromJson(Map<String, dynamic> json) => Paymentterms(
+        prepayment: json["prepayment"] == null
+            ? null
+            : Prepayment.fromJson(json["prepayment"]),
+        cancellation: json["cancellation"] == null
+            ? null
+            : Cancellation.fromJson(json["cancellation"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "prepayment": prepayment?.toJson(),
+        "cancellation": cancellation?.toJson(),
+      };
+}
+
+class Cancellation {
+  Cancellation({
+    this.description,
+    this.timeline,
+    this.nonRefundableAnymore,
+    this.typeTranslation,
+    this.guaranteedNonRefundable,
+    this.bucket,
+    this.type,
+  });
+
+  String? description;
+  Timeline? timeline;
+  num? nonRefundableAnymore;
+  String? typeTranslation;
+  num? guaranteedNonRefundable;
+  String? bucket;
+  String? type;
+
+  factory Cancellation.fromJson(Map<String, dynamic> json) => Cancellation(
+        description: json["description"],
+        timeline: json["timeline"] == null
+            ? null
+            : Timeline.fromJson(json["timeline"]),
+        nonRefundableAnymore: json["non_refundable_anymore"],
+        typeTranslation: json["type_translation"],
+        guaranteedNonRefundable: json["guaranteed_non_refundable"],
+        bucket: json["bucket"],
+        type: json["type"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "description": description,
+        "timeline": timeline?.toJson(),
+        "non_refundable_anymore": nonRefundableAnymore,
+        "type_translation": typeTranslation,
+        "guaranteed_non_refundable": guaranteedNonRefundable,
+        "bucket": bucket,
+        "type": type,
+      };
+}
+
+class Timeline {
+  Timeline({
+    this.uCurrencyCode,
+    this.currencyCode,
+    this.policygroupInstanceId,
+    this.nrStages,
+  });
+
+  String? uCurrencyCode;
+  String? currencyCode;
+  String? policygroupInstanceId;
+  num? nrStages;
+
+  factory Timeline.fromJson(Map<String, dynamic> json) => Timeline(
+        uCurrencyCode: json["u_currency_code"],
+        currencyCode: json["currency_code"],
+        policygroupInstanceId: json["policygroup_instance_id"],
+        nrStages: json["nr_stages"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "u_currency_code": uCurrencyCode,
+        "currency_code": currencyCode,
+        "policygroup_instance_id": policygroupInstanceId,
+        "nr_stages": nrStages,
+      };
+}
+
+class Prepayment {
+  Prepayment({
+    this.typeExtended,
+    this.type,
+    this.extendedTypeTranslation,
+    this.timeline,
+    this.simpleTranslation,
+    this.description,
+    this.typeTranslation,
+  });
+
+  String? typeExtended;
+  String? type;
+  String? extendedTypeTranslation;
+  Timeline? timeline;
+  String? simpleTranslation;
+  String? description;
+  String? typeTranslation;
+
+  factory Prepayment.fromJson(Map<String, dynamic> json) => Prepayment(
+        typeExtended: json["type_extended"],
+        type: json["type"],
+        extendedTypeTranslation: json["extended_type_translation"],
+        timeline: json["timeline"] == null
+            ? null
+            : Timeline.fromJson(json["timeline"]),
+        simpleTranslation: json["simple_translation"],
+        description: json["description"],
+        typeTranslation: json["type_translation"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "type_extended": typeExtended,
+        "type": type,
+        "extended_type_translation": extendedTypeTranslation,
+        "timeline": timeline?.toJson(),
+        "simple_translation": simpleTranslation,
+        "description": description,
+        "type_translation": typeTranslation,
+      };
+}
+
+class PriceBreakdown {
+  PriceBreakdown({
+    this.currency,
+    this.allInclusivePrice,
+  });
+
+  String? currency;
+  num? allInclusivePrice;
+
+  factory PriceBreakdown.fromJson(Map<String, dynamic> json) => PriceBreakdown(
+        currency: json["currency"],
+        allInclusivePrice: json["all_inclusive_price"]?.toDouble(),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "currency": currency,
+        "all_inclusive_price": allInclusivePrice,
+      };
+}
+
+class ProductPriceBreakdown {
+  ProductPriceBreakdown({
+    this.allInclusiveAmount,
+    this.netAmount,
+    this.grossAmountPerNight,
+    this.items,
+    this.grossAmount,
+    this.excludedAmount,
+    this.nrStays,
+    this.benefits,
+    this.includedTaxesAndChargesAmount,
+    this.grossAmountHotelCurrency,
+  });
+
+  AllInclusiveAmount? allInclusiveAmount;
+  AllInclusiveAmount? netAmount;
+  AllInclusiveAmount? grossAmountPerNight;
+  List<Item>? items;
+  AllInclusiveAmount? grossAmount;
+  AllInclusiveAmount? excludedAmount;
+  num? nrStays;
+  List<dynamic>? benefits;
+  AllInclusiveAmount? includedTaxesAndChargesAmount;
+  AllInclusiveAmount? grossAmountHotelCurrency;
+
+  factory ProductPriceBreakdown.fromJson(Map<String, dynamic> json) =>
+      ProductPriceBreakdown(
+        allInclusiveAmount: json["all_inclusive_amount"] == null
+            ? null
+            : AllInclusiveAmount.fromJson(json["all_inclusive_amount"]),
+        netAmount: json["net_amount"] == null
+            ? null
+            : AllInclusiveAmount.fromJson(json["net_amount"]),
+        grossAmountPerNight: json["gross_amount_per_night"] == null
+            ? null
+            : AllInclusiveAmount.fromJson(json["gross_amount_per_night"]),
+        items: json["items"] == null
+            ? []
+            : List<Item>.from(json["items"]!.map((x) => Item.fromJson(x))),
+        grossAmount: json["gross_amount"] == null
+            ? null
+            : AllInclusiveAmount.fromJson(json["gross_amount"]),
+        excludedAmount: json["excluded_amount"] == null
+            ? null
+            : AllInclusiveAmount.fromJson(json["excluded_amount"]),
+        nrStays: json["nr_stays"],
+        benefits: json["benefits"] == null
+            ? []
+            : List<dynamic>.from(json["benefits"]!.map((x) => x)),
+        includedTaxesAndChargesAmount:
+            json["included_taxes_and_charges_amount"] == null
+                ? null
+                : AllInclusiveAmount.fromJson(
+                    json["included_taxes_and_charges_amount"]),
+        grossAmountHotelCurrency: json["gross_amount_hotel_currency"] == null
+            ? null
+            : AllInclusiveAmount.fromJson(json["gross_amount_hotel_currency"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "all_inclusive_amount": allInclusiveAmount?.toJson(),
+        "net_amount": netAmount?.toJson(),
+        "gross_amount_per_night": grossAmountPerNight?.toJson(),
+        "items": items == null
+            ? []
+            : List<dynamic>.from(items!.map((x) => x.toJson())),
+        "gross_amount": grossAmount?.toJson(),
+        "excluded_amount": excludedAmount?.toJson(),
+        "nr_stays": nrStays,
+        "benefits":
+            benefits == null ? [] : List<dynamic>.from(benefits!.map((x) => x)),
+        "included_taxes_and_charges_amount":
+            includedTaxesAndChargesAmount?.toJson(),
+        "gross_amount_hotel_currency": grossAmountHotelCurrency?.toJson(),
+      };
+}
+
+class AllInclusiveAmount {
+  AllInclusiveAmount({
+    this.value,
+    this.currency,
+  });
+
+  num? value;
+  String? currency;
+
+  factory AllInclusiveAmount.fromJson(Map<String, dynamic> json) =>
+      AllInclusiveAmount(
+        value: json["value"]?.toDouble(),
+        currency: json["currency"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "value": value,
+        "currency": currency,
+      };
+}
+
+class Item {
+  Item({
+    this.details,
+    this.itemAmount,
+    this.name,
+    this.base,
+    this.inclusionType,
+    this.kind,
+  });
+
+  String? details;
+  AllInclusiveAmount? itemAmount;
+  String? name;
+  Base? base;
+  String? inclusionType;
+  String? kind;
+
+  factory Item.fromJson(Map<String, dynamic> json) => Item(
+        details: json["details"],
+        itemAmount: json["item_amount"] == null
+            ? null
+            : AllInclusiveAmount.fromJson(json["item_amount"]),
+        name: json["name"],
+        base: json["base"] == null ? null : Base.fromJson(json["base"]),
+        inclusionType: json["inclusion_type"],
+        kind: json["kind"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "details": details,
+        "item_amount": itemAmount?.toJson(),
+        "name": name,
+        "base": base?.toJson(),
+        "inclusion_type": inclusionType,
+        "kind": kind,
+      };
+}
+
+class Base {
+  Base({
+    this.kind,
+    this.percentage,
+  });
+
+  String? kind;
+  num? percentage;
+
+  factory Base.fromJson(Map<String, dynamic> json) => Base(
+        kind: json["kind"],
+        percentage: json["percentage"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "kind": kind,
+        "percentage": percentage,
       };
 }
 
@@ -73,11 +785,11 @@ class Room {
     this.privateBathroomHighlight,
   });
 
-  int? photosMaySorted;
+  num? photosMaySorted;
   List<Highlight>? highlights;
-  int? isHighFloorGuaranteed;
+  num? isHighFloorGuaranteed;
   ChildrenAndBedsText? childrenAndBedsText;
-  int? privateBathroomCount;
+  num? privateBathroomCount;
   List<Photo>? photos;
   List<Facility>? facilities;
   String? description;
@@ -172,8 +884,8 @@ class BedType {
   String? name;
   String? nameWithCount;
   String? description;
-  int? bedType;
-  int? count;
+  num? bedType;
+  num? count;
   dynamic descriptionLocalized;
 
   factory BedType.fromJson(Map<String, dynamic> json) => BedType(
@@ -199,23 +911,23 @@ class BedType {
 
 class ChildrenAndBedsText {
   ChildrenAndBedsText({
-    this.ageIntervals,
+    this.agenumervals,
     this.childrenAtTheProperty,
     this.allowChildren,
     this.cribsAndExtraBeds,
   });
 
-  List<AgeInterval>? ageIntervals;
+  List<Agenumerval>? agenumervals;
   List<ChildrenAtTheProperty>? childrenAtTheProperty;
-  int? allowChildren;
+  num? allowChildren;
   List<ChildrenAtTheProperty>? cribsAndExtraBeds;
 
   factory ChildrenAndBedsText.fromJson(Map<String, dynamic> json) =>
       ChildrenAndBedsText(
-        ageIntervals: json["age_intervals"] == null
+        agenumervals: json["age_numervals"] == null
             ? []
-            : List<AgeInterval>.from(
-                json["age_intervals"]!.map((x) => AgeInterval.fromJson(x))),
+            : List<Agenumerval>.from(
+                json["age_numervals"]!.map((x) => Agenumerval.fromJson(x))),
         childrenAtTheProperty: json["children_at_the_property"] == null
             ? []
             : List<ChildrenAtTheProperty>.from(json["children_at_the_property"]!
@@ -228,9 +940,9 @@ class ChildrenAndBedsText {
       );
 
   Map<String, dynamic> toJson() => {
-        "age_intervals": ageIntervals == null
+        "age_numervals": agenumervals == null
             ? []
-            : List<dynamic>.from(ageIntervals!.map((x) => x.toJson())),
+            : List<dynamic>.from(agenumervals!.map((x) => x.toJson())),
         "children_at_the_property": childrenAtTheProperty == null
             ? []
             : List<dynamic>.from(childrenAtTheProperty!.map((x) => x.toJson())),
@@ -241,8 +953,8 @@ class ChildrenAndBedsText {
       };
 }
 
-class AgeInterval {
-  AgeInterval({
+class Agenumerval {
+  Agenumerval({
     this.groupByPrice,
     this.typesByPrice,
     this.crib,
@@ -254,11 +966,11 @@ class AgeInterval {
   GroupByPrice? groupByPrice;
   List<List<TypesByPrice>>? typesByPrice;
   Crib? crib;
-  int? maxAge;
-  int? minAge;
+  num? maxAge;
+  num? minAge;
   ExtraBed? extraBed;
 
-  factory AgeInterval.fromJson(Map<String, dynamic> json) => AgeInterval(
+  factory Agenumerval.fromJson(Map<String, dynamic> json) => Agenumerval(
         groupByPrice: json["group_by_price"] == null
             ? null
             : GroupByPrice.fromJson(json["group_by_price"]),
@@ -298,12 +1010,12 @@ class Crib {
     this.id,
   });
 
-  int? priceModeN;
-  int? price;
-  int? priceTypeN;
+  num? priceModeN;
+  num? price;
+  num? priceTypeN;
   String? priceMode;
   String? priceType;
-  int? id;
+  num? id;
 
   factory Crib.fromJson(Map<String, dynamic> json) => Crib(
         priceModeN: json["price_mode_n"],
@@ -335,11 +1047,11 @@ class ExtraBed {
   });
 
   String? priceMode;
-  int? id;
+  num? id;
   String? priceType;
-  int? priceModeN;
+  num? priceModeN;
   String? price;
-  int? priceTypeN;
+  num? priceTypeN;
 
   factory ExtraBed.fromJson(Map<String, dynamic> json) => ExtraBed(
         priceMode: json["price_mode"],
@@ -404,7 +1116,7 @@ class ChildrenAtTheProperty {
   });
 
   String? text;
-  int? highlight;
+  num? highlight;
 
   factory ChildrenAtTheProperty.fromJson(Map<String, dynamic> json) =>
       ChildrenAtTheProperty(
@@ -429,10 +1141,10 @@ class Facility {
   });
 
   AltFacilitytypeName? altFacilitytypeName;
-  int? id;
-  int? altFacilitytypeId;
+  num? id;
+  num? altFacilitytypeId;
   String? name;
-  int? facilitytypeId;
+  num? facilitytypeId;
   FacilitytypeName? facilitytypeName;
 
   factory Facility.fromJson(Map<String, dynamic> json) => Facility(
@@ -516,7 +1228,7 @@ class Highlight {
 
   String? icon;
   String? translatedName;
-  int? id;
+  num? id;
 
   factory Highlight.fromJson(Map<String, dynamic> json) => Highlight(
         icon: json["icon"],
@@ -544,11 +1256,11 @@ class Photo {
   });
 
   String? urlMax300;
-  int? photoId;
+  num? photoId;
   String? urlSquare60;
   String? url640X200;
-  int? newOrder;
-  double? ratio;
+  num? newOrder;
+  num? ratio;
   String? urlOriginal;
   DateTime? lastUpdateDate;
 
@@ -583,7 +1295,7 @@ class PrivateBathroomHighlight {
     this.text,
   });
 
-  int? hasHighlight;
+  num? hasHighlight;
   String? text;
 
   factory PrivateBathroomHighlight.fromJson(Map<String, dynamic> json) =>
