@@ -7,13 +7,13 @@ import '../model/hotel.dart';
 import '../utils/service.dart';
 import '../widgets/list_widget.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
   @override
-  State<Home> createState() => _HomeState();
+  State<HomePage> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<HomePage> {
   final Future<HotelList> futureData = Future<HotelList>.delayed(
       const Duration(seconds: 2),
       () => Services.fetchHotelData(

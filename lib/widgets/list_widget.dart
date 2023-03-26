@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hotelflutter/widgets/detail_widget.dart';
+import 'package:hotelflutter/pages/detail_widget.dart';
 import '../model/hotel.dart';
 import 'card_widget.dart';
 
