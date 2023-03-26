@@ -16,7 +16,12 @@ class DetailWidget extends StatelessWidget {
       appBar: AppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [Text(block?.name ?? '')],
+        children: [
+          Text(
+            block?.name ?? '',
+            style: const TextStyle(color: Colors.black),
+          )
+        ],
       ),
     );
   }
