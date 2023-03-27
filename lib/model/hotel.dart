@@ -332,10 +332,10 @@ class PurpleExtraCharge {
   String? type;
   String? currency;
   String? name;
-  num? excluded;
+  int? excluded;
   String? chargeAmount;
   String? inclusionType;
-  num? chargePriceMode;
+  int? chargePriceMode;
 
   factory PurpleExtraCharge.fromJson(Map<String, dynamic> json) =>
       PurpleExtraCharge(
@@ -428,12 +428,12 @@ class FluffyExtraCharge {
 
   String? inclusionType;
   String? chargeAmount;
-  num? chargePriceMode;
+  int? chargePriceMode;
   String? amount;
   String? type;
   String? currency;
   String? name;
-  num? excluded;
+  int? excluded;
 
   factory FluffyExtraCharge.fromJson(Map<String, dynamic> json) =>
       FluffyExtraCharge(
@@ -496,9 +496,9 @@ class Cancellation {
 
   String? description;
   Timeline? timeline;
-  num? nonRefundableAnymore;
+  int? nonRefundableAnymore;
   String? typeTranslation;
-  num? guaranteedNonRefundable;
+  int? guaranteedNonRefundable;
   String? bucket;
   String? type;
 
@@ -536,7 +536,7 @@ class Timeline {
   String? uCurrencyCode;
   String? currencyCode;
   String? policygroupInstanceId;
-  num? nrStages;
+  int? nrStages;
 
   factory Timeline.fromJson(Map<String, dynamic> json) => Timeline(
         uCurrencyCode: json["u_currency_code"],
@@ -602,7 +602,7 @@ class PriceBreakdown {
   });
 
   String? currency;
-  num? allInclusivePrice;
+  double? allInclusivePrice;
 
   factory PriceBreakdown.fromJson(Map<String, dynamic> json) => PriceBreakdown(
         currency: json["currency"],
@@ -635,7 +635,7 @@ class ProductPriceBreakdown {
   List<Item>? items;
   AllInclusiveAmount? grossAmount;
   AllInclusiveAmount? excludedAmount;
-  num? nrStays;
+  int? nrStays;
   List<dynamic>? benefits;
   AllInclusiveAmount? includedTaxesAndChargesAmount;
   AllInclusiveAmount? grossAmountHotelCurrency;
@@ -698,7 +698,7 @@ class AllInclusiveAmount {
     this.currency,
   });
 
-  num? value;
+  double? value;
   String? currency;
 
   factory AllInclusiveAmount.fromJson(Map<String, dynamic> json) =>
@@ -785,11 +785,11 @@ class Room {
     this.privateBathroomHighlight,
   });
 
-  num? photosMaySorted;
+  int? photosMaySorted;
   List<Highlight>? highlights;
-  num? isHighFloorGuaranteed;
+  int? isHighFloorGuaranteed;
   ChildrenAndBedsText? childrenAndBedsText;
-  num? privateBathroomCount;
+  int? privateBathroomCount;
   List<Photo>? photos;
   List<Facility>? facilities;
   String? description;
@@ -884,8 +884,8 @@ class BedType {
   String? name;
   String? nameWithCount;
   String? description;
-  num? bedType;
-  num? count;
+  int? bedType;
+  int? count;
   dynamic descriptionLocalized;
 
   factory BedType.fromJson(Map<String, dynamic> json) => BedType(
@@ -919,7 +919,7 @@ class ChildrenAndBedsText {
 
   List<Agenumerval>? agenumervals;
   List<ChildrenAtTheProperty>? childrenAtTheProperty;
-  num? allowChildren;
+  int? allowChildren;
   List<ChildrenAtTheProperty>? cribsAndExtraBeds;
 
   factory ChildrenAndBedsText.fromJson(Map<String, dynamic> json) =>
@@ -966,8 +966,8 @@ class Agenumerval {
   GroupByPrice? groupByPrice;
   List<List<TypesByPrice>>? typesByPrice;
   Crib? crib;
-  num? maxAge;
-  num? minAge;
+  int? maxAge;
+  int? minAge;
   ExtraBed? extraBed;
 
   factory Agenumerval.fromJson(Map<String, dynamic> json) => Agenumerval(
@@ -1010,12 +1010,12 @@ class Crib {
     this.id,
   });
 
-  num? priceModeN;
-  num? price;
-  num? priceTypeN;
+  int? priceModeN;
+  int? price;
+  int? priceTypeN;
   String? priceMode;
   String? priceType;
-  num? id;
+  int? id;
 
   factory Crib.fromJson(Map<String, dynamic> json) => Crib(
         priceModeN: json["price_mode_n"],
@@ -1047,11 +1047,11 @@ class ExtraBed {
   });
 
   String? priceMode;
-  num? id;
+  int? id;
   String? priceType;
-  num? priceModeN;
+  int? priceModeN;
   String? price;
-  num? priceTypeN;
+  int? priceTypeN;
 
   factory ExtraBed.fromJson(Map<String, dynamic> json) => ExtraBed(
         priceMode: json["price_mode"],
@@ -1116,7 +1116,7 @@ class ChildrenAtTheProperty {
   });
 
   String? text;
-  num? highlight;
+  int? highlight;
 
   factory ChildrenAtTheProperty.fromJson(Map<String, dynamic> json) =>
       ChildrenAtTheProperty(
@@ -1141,10 +1141,10 @@ class Facility {
   });
 
   AltFacilitytypeName? altFacilitytypeName;
-  num? id;
-  num? altFacilitytypeId;
+  int? id;
+  int? altFacilitytypeId;
   String? name;
-  num? facilitytypeId;
+  int? facilitytypeId;
   FacilitytypeName? facilitytypeName;
 
   factory Facility.fromJson(Map<String, dynamic> json) => Facility(
@@ -1228,7 +1228,7 @@ class Highlight {
 
   String? icon;
   String? translatedName;
-  num? id;
+  int? id;
 
   factory Highlight.fromJson(Map<String, dynamic> json) => Highlight(
         icon: json["icon"],
@@ -1256,11 +1256,11 @@ class Photo {
   });
 
   String? urlMax300;
-  num? photoId;
+  int? photoId;
   String? urlSquare60;
   String? url640X200;
-  num? newOrder;
-  num? ratio;
+  int? newOrder;
+  double? ratio;
   String? urlOriginal;
   DateTime? lastUpdateDate;
 
@@ -1295,7 +1295,7 @@ class PrivateBathroomHighlight {
     this.text,
   });
 
-  num? hasHighlight;
+  int? hasHighlight;
   String? text;
 
   factory PrivateBathroomHighlight.fromJson(Map<String, dynamic> json) =>
