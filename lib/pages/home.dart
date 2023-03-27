@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:hotelflutter/widgets/bigger_list_widget.dart';
 import 'dart:async';
 import '../model/hotel.dart';
 import '../utils/service.dart';
@@ -29,7 +31,50 @@ class _HomeState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureWidget(futureData: futureData),
+      extendBody: true,
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          const SliverAppBarWidget(
+            text: 'Home',
+            bgColor: Colors.white,
+            txtColor: Colors.black,
+          ),
+          SliverToBoxAdapter(
+            child: FutureWidget(futureData: futureData),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class SliverAppBarWidget extends StatelessWidget {
+  const SliverAppBarWidget({
+    required this.text,
+    required this.bgColor,
+    required this.txtColor,
+    super.key,
+  });
+  final String text;
+  final Color bgColor;
+  final Color txtColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      systemOverlayStyle: SystemUiOverlayStyle.light,
+      backgroundColor: bgColor,
+      floating: true,
+      title: Text(
+        text,
+        style: TextStyle(
+          color: txtColor,
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+          letterSpacing: -1.2,
+        ),
+      ),
     );
   }
 }
@@ -48,6 +93,7 @@ class FutureWidget extends StatelessWidget {
       future: futureData,
       builder: (context, AsyncSnapshot<HotelList> snapshot) {
         if (snapshot.hasError) {
+          print(snapshot);
           return Center(
             child: Text('Error: ${snapshot.error}'),
           );
@@ -61,37 +107,35 @@ class FutureWidget extends StatelessWidget {
 
         return Padding(
           padding: const EdgeInsets.all(7),
-          child: SingleChildScrollView(
-            physics: const NeverScrollableScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const IconTextWidget(
-                  icon: Icons.search,
-                  text: "Most Searched",
-                ),
-                ListContainer(
-                  snapshot: snapshot,
-                  height: 240,
-                ),
-                const IconTextWidget(
-                  icon: Icons.star,
-                  text: "Most Visited",
-                ),
-                ListContainer(
-                  snapshot: snapshot,
-                  height: 240,
-                ),
-                const IconTextWidget(
-                  icon: Icons.favorite,
-                  text: "Visitors Choice",
-                ),
-                ListContainer(
-                  snapshot: snapshot,
-                  height: 240,
-                ),
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const IconTextWidget(
+                icon: Icons.search,
+                text: "Most Searched",
+              ),
+              ListContainer(
+                snapshot: snapshot,
+                height: 240,
+              ),
+              const IconTextWidget(
+                icon: Icons.star,
+                text: "Recomended  Rooms",
+              ),
+              SizedBox(
+                height: 280,
+                child:
+                    BiggerListWidget(hotelData: snapshot.data ?? HotelList()),
+              ),
+              const IconTextWidget(
+                icon: Icons.favorite,
+                text: "Visitors Choice",
+              ),
+              ListContainer(
+                snapshot: snapshot,
+                height: 240,
+              ),
+            ],
           ),
         );
       },

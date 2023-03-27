@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hotelflutter/pages/explorePage.dart';
 import 'package:hotelflutter/pages/favoritesPage.dart';
 import 'package:hotelflutter/pages/home.dart';
@@ -71,20 +70,6 @@ class _AppState extends State<App> {
         physics: const BouncingScrollPhysics(),
         controller: controller,
         slivers: [
-          const SliverAppBar(
-            systemOverlayStyle: SystemUiOverlayStyle.light,
-            backgroundColor: Colors.white,
-            floating: true,
-            title: Text(
-              'HotelList',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                letterSpacing: -1.2,
-              ),
-            ),
-          ),
           SliverFillRemaining(
             child: pageList.elementAt(currentIndex),
           )
