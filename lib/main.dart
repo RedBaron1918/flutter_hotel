@@ -5,7 +5,10 @@ import 'package:hotelflutter/widgets/app.dart';
 void main() {
   runApp(MaterialApp(
     title: 'Hotel List',
-    theme: ThemeData(textTheme: Typography.whiteRedmond),
+    theme: ThemeData(
+      textTheme: Typography.whiteRedmond,
+      scaffoldBackgroundColor: Color.fromARGB(255, 233, 233, 233),
+    ),
     home: const App(),
   ));
 }

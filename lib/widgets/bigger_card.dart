@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../model/hotel.dart';
 
 class BiggerCard extends StatefulWidget {
@@ -13,7 +12,7 @@ class BiggerCard extends StatefulWidget {
   final Block? block;
 
   @override
-  _BiggerCardState createState() => _BiggerCardState();
+  State<BiggerCard> createState() => _BiggerCardState();
 }
 
 class _BiggerCardState extends State<BiggerCard> {
@@ -26,43 +25,52 @@ class _BiggerCardState extends State<BiggerCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(
-            widget.room?.photos?[0].url640X200 ?? '',
-            height: 150,
-            fit: BoxFit.cover,
-          ),
-          const SizedBox(
-            height: 7,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.block?.nameWithoutPolicy ?? '',
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                  ),
-                ),
-                Text(
-                  widget.room?.description ?? '',
-                  style: const TextStyle(
-                    color: Color.fromARGB(255, 99, 99, 99),
-                    fontSize: 18,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(5)),
+        padding: EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                widget.room?.photos?[0].url640X200 ?? '',
+                height: 150,
+                fit: BoxFit.cover,
+              ),
             ),
-          )
-        ],
+            const SizedBox(
+              height: 7,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.block?.nameWithoutPolicy ?? '',
+                    style: const TextStyle(
+                      color: Color(0xFF333333),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    widget.room?.description ?? '',
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 133, 133, 133),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

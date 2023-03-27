@@ -13,7 +13,7 @@ class CardWidget extends StatefulWidget {
   final Block? block;
 
   @override
-  _CardWidgetState createState() => _CardWidgetState();
+  State<CardWidget> createState() => _CardWidgetState();
 }
 
 class _CardWidgetState extends State<CardWidget> {
@@ -22,7 +22,6 @@ class _CardWidgetState extends State<CardWidget> {
   @override
   void initState() {
     super.initState();
-    // You could initialize _isFavorite here based on whether the room is already a favorite.
   }
 
   @override
@@ -38,11 +37,11 @@ class _CardWidgetState extends State<CardWidget> {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(5),
                   child: Image.network(
                     widget.room?.photos?[0].urlOriginal ?? '',
                     height: 150,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
                 Positioned(
@@ -83,7 +82,8 @@ class _CardWidgetState extends State<CardWidget> {
                   Text(
                     widget.block?.nameWithoutPolicy ?? '',
                     style: const TextStyle(
-                      color: Colors.black,
+                      color: Color(0xFF333333),
+                      fontWeight: FontWeight.w600,
                       fontSize: 18,
                     ),
                     maxLines: 1,

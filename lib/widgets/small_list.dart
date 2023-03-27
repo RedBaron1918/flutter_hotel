@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hotelflutter/pages/detail_widget.dart';
+import 'package:hotelflutter/widgets/small_card.dart';
 import '../model/hotel.dart';
 import 'card_widget.dart';
 
-class ListWidget extends StatelessWidget {
-  const ListWidget({
+class SmallList extends StatelessWidget {
+  const SmallList({
     Key? key,
     required this.hotelData,
-    required this.builder,
   }) : super(key: key);
 
   final HotelList hotelData;
-  final Widget Function(BuildContext context, Room? room, Block? block) builder;
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +26,16 @@ class ListWidget extends StatelessWidget {
         final room = hotelData.rooms?[roomId.toString()]!;
         final block = hotelData.block?.firstWhere((b) => b.roomId == roomId);
         return InkWell(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => DetailWidget(
-                  block: block,
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => DetailWidget(
+                    block: block,
+                  ),
                 ),
-              ),
-            );
-          },
-          child: builder(context, room, block),
-        );
+              );
+            },
+            child: SmallCard(room: room, block: block));
       },
     );
   }

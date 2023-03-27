@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hotelflutter/pages/detail_widget.dart';
 import 'package:hotelflutter/widgets/bigger_card.dart';
 import '../model/hotel.dart';
-import 'card_widget.dart';
 
 class BiggerListWidget extends StatelessWidget {
   const BiggerListWidget({
@@ -26,17 +25,20 @@ class BiggerListWidget extends StatelessWidget {
         final room = hotelData.rooms?[roomId.toString()]!;
         final block = hotelData.block?.firstWhere((b) => b.roomId == roomId);
         return InkWell(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => DetailWidget(
-                    block: block,
-                  ),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => DetailWidget(
+                  block: block,
                 ),
-              );
-            },
-            child: SizedBox(
-                width: 300, child: BiggerCard(room: room, block: block)));
+              ),
+            );
+          },
+          child: SizedBox(
+            width: 300,
+            child: BiggerCard(room: room, block: block),
+          ),
+        );
       },
     );
   }

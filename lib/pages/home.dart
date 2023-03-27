@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hotelflutter/widgets/bigger_list_widget.dart';
+import 'package:hotelflutter/widgets/card_widget.dart';
+import 'package:hotelflutter/widgets/small_list.dart';
 import 'dart:async';
 import '../model/hotel.dart';
 import '../utils/service.dart';
@@ -114,13 +116,18 @@ class FutureWidget extends StatelessWidget {
                 icon: Icons.search,
                 text: "Most Searched",
               ),
-              ListContainer(
-                snapshot: snapshot,
+              SizedBox(
                 height: 240,
+                child: ListWidget(
+                  hotelData: snapshot.data ?? HotelList(),
+                  builder: (context, room, block) {
+                    return CardWidget(room: room, block: block);
+                  },
+                ),
               ),
               const IconTextWidget(
                 icon: Icons.star,
-                text: "Recomended  Rooms",
+                text: "Featured",
               ),
               SizedBox(
                 height: 280,
@@ -131,31 +138,14 @@ class FutureWidget extends StatelessWidget {
                 icon: Icons.favorite,
                 text: "Visitors Choice",
               ),
-              ListContainer(
-                snapshot: snapshot,
-                height: 240,
-              ),
+              SizedBox(
+                height: 100,
+                child: SmallList(hotelData: snapshot.data ?? HotelList()),
+              )
             ],
           ),
         );
       },
-    );
-  }
-}
-
-class ListContainer extends StatelessWidget {
-  const ListContainer({
-    required this.height,
-    required this.snapshot,
-    super.key,
-  });
-  final dynamic snapshot;
-  final double height;
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      child: ListWidget(hotelData: snapshot.data ?? HotelList()),
     );
   }
 }
@@ -177,7 +167,9 @@ class IconTextWidget extends StatelessWidget {
         Text(
           text,
           style: const TextStyle(
-              color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+              color: Color(0xFF333333),
+              fontSize: 22,
+              fontWeight: FontWeight.w600),
         ),
       ],
     );
