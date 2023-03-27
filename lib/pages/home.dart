@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hotelflutter/widgets/bigger_list_widget.dart';
+import 'package:hotelflutter/widgets/bigger_card.dart';
 import 'package:hotelflutter/widgets/card_widget.dart';
-import 'package:hotelflutter/widgets/small_list.dart';
+import 'package:hotelflutter/widgets/small_card.dart';
 import 'dart:async';
 import '../model/hotel.dart';
 import '../utils/service.dart';
@@ -95,7 +95,6 @@ class FutureWidget extends StatelessWidget {
       future: futureData,
       builder: (context, AsyncSnapshot<HotelList> snapshot) {
         if (snapshot.hasError) {
-          print(snapshot);
           return Center(
             child: Text('Error: ${snapshot.error}'),
           );
@@ -130,17 +129,25 @@ class FutureWidget extends StatelessWidget {
                 text: "Featured",
               ),
               SizedBox(
-                height: 280,
-                child:
-                    BiggerListWidget(hotelData: snapshot.data ?? HotelList()),
-              ),
+                  height: 280,
+                  child: ListWidget(
+                    hotelData: snapshot.data ?? HotelList(),
+                    builder: (context, room, block) {
+                      return BiggerCard(room: room, block: block);
+                    },
+                  )),
               const IconTextWidget(
                 icon: Icons.favorite,
                 text: "Visitors Choice",
               ),
               SizedBox(
                 height: 100,
-                child: SmallList(hotelData: snapshot.data ?? HotelList()),
+                child: ListWidget(
+                  hotelData: snapshot.data ?? HotelList(),
+                  builder: (context, room, block) {
+                    return SmallCard(room: room, block: block);
+                  },
+                ),
               )
             ],
           ),
