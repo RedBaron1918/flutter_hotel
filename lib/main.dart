@@ -6,7 +6,7 @@ void main() {
   runApp(MaterialApp(
     title: 'Hotel List',
     theme: ThemeData(
-      textTheme: Typography.whiteRedmond,
+      textTheme: Typography.blackRedwoodCity,
       scaffoldBackgroundColor: Color.fromARGB(255, 233, 233, 233),
     ),
     home: const App(),

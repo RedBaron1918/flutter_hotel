@@ -32,6 +32,7 @@ class ListWidget extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => DetailWidget(
                   block: block,
+                  room: room,
                 ),
               ),
             );

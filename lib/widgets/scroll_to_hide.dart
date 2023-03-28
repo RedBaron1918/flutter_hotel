@@ -32,7 +32,6 @@ class _ScrollToHideWidgetState extends State<ScrollToHideWidget> {
 
   void listen() {
     final direction = widget.controller.position.userScrollDirection;
-    print(direction);
     if (direction == ScrollDirection.forward) {
       show();
     } else if (direction == ScrollDirection.reverse) {

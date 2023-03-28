@@ -129,7 +129,7 @@ class FutureWidget extends StatelessWidget {
                 text: "Featured",
               ),
               SizedBox(
-                  height: 280,
+                  height: 284,
                   child: ListWidget(
                     hotelData: snapshot.data ?? HotelList(),
                     builder: (context, room, block) {
