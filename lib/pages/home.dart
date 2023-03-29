@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hotelflutter/widgets/bigger_card.dart';
 import 'package:hotelflutter/widgets/card_widget.dart';
 import 'package:hotelflutter/widgets/small_card.dart';
-import 'dart:async';
 import '../model/hotel.dart';
 import '../utils/service.dart';
 import '../widgets/future_widget.dart';
@@ -17,11 +16,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomeState extends State<HomePage> {
-  final Future<HotelList> futureData = Future<HotelList>.delayed(
-      const Duration(seconds: 2),
-      () => Services.fetchHotelData(
-          "https://4d2bl2qtic.execute-api.us-east-1.amazonaws.com/v1/hotels/room-list?adults_number_by_rooms=1&checkin_date=2023-05-27&locale=en-gb&checkout_date=2023-05-28&units=metric&hotel_id=320991&currency=GEL"));
-
   @override
   void initState() {
     super.initState();
@@ -46,7 +40,7 @@ class _HomeState extends State<HomePage> {
           ),
           SliverToBoxAdapter(
             child: FutureWidget(
-              futureData: futureData,
+              futureData: Services.futureData,
               builder: (AsyncSnapshot<HotelList> snapshot) {
                 return Padding(
                   padding: const EdgeInsets.all(7),
@@ -56,10 +50,12 @@ class _HomeState extends State<HomePage> {
                       const IconTextWidget(
                         icon: Icons.search,
                         text: "Most Searched",
+                        color: Colors.red,
                       ),
                       SizedBox(
                         height: 240,
                         child: ListWidget(
+                          dir: Axis.horizontal,
                           hotelData: snapshot.data ?? HotelList(),
                           builder: (context, room, block) {
                             return CardWidget(room: room, block: block);
@@ -67,24 +63,29 @@ class _HomeState extends State<HomePage> {
                         ),
                       ),
                       const IconTextWidget(
+                        color: Colors.red,
                         icon: Icons.star,
                         text: "Featured",
                       ),
                       SizedBox(
-                          height: 284,
-                          child: ListWidget(
-                            hotelData: snapshot.data ?? HotelList(),
-                            builder: (context, room, block) {
-                              return BiggerCard(room: room, block: block);
-                            },
-                          )),
+                        height: 284,
+                        child: ListWidget(
+                          dir: Axis.horizontal,
+                          hotelData: snapshot.data ?? HotelList(),
+                          builder: (context, room, block) {
+                            return BiggerCard(room: room, block: block);
+                          },
+                        ),
+                      ),
                       const IconTextWidget(
+                        color: Colors.redAccent,
                         icon: Icons.favorite,
                         text: "Visitors Choice",
                       ),
                       SizedBox(
                         height: 100,
                         child: ListWidget(
+                          dir: Axis.horizontal,
                           hotelData: snapshot.data ?? HotelList(),
                           builder: (context, room, block) {
                             return SmallCard(room: room, block: block);

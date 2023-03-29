@@ -21,4 +21,8 @@ class Services {
       throw Exception('Failed to fetch playlist data');
     }
   }
+
+  static Future<HotelList> futureData = Future<HotelList>(() =>
+      Services.fetchHotelData(
+          "https://4d2bl2qtic.execute-api.us-east-1.amazonaws.com/v1/hotels/room-list?adults_number_by_rooms=1&checkin_date=2023-05-27&locale=en-gb&checkout_date=2023-05-28&units=metric&hotel_id=320991&currency=GEL"));
 }

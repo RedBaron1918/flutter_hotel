@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hotelflutter/pages/explorePage.dart';
-import 'package:hotelflutter/pages/favoritesPage.dart';
+import 'package:hotelflutter/pages/explore_page.dart';
+import 'package:hotelflutter/pages/favorites_page.dart';
 import 'package:hotelflutter/pages/home.dart';
 import 'package:hotelflutter/pages/profile.dart';
 import 'package:hotelflutter/widgets/scroll_to_hide.dart';
