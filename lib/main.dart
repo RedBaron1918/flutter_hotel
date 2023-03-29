@@ -7,7 +7,7 @@ void main() {
     title: 'Hotel List',
     theme: ThemeData(
       textTheme: Typography.blackRedwoodCity,
-      scaffoldBackgroundColor: Color.fromARGB(255, 233, 233, 233),
+      scaffoldBackgroundColor: const Color.fromARGB(255, 233, 233, 233),
     ),
     home: const App(),
   ));

@@ -42,7 +42,7 @@ class _ExploreCardState extends State<ExploreCard> {
                   borderRadius: BorderRadius.circular(5),
                   child: Image.network(
                     widget.room?.photos?[0].url640X200 ?? '',
-                    height: 150,
+                    height: 170,
                     fit: BoxFit.fill,
                   ),
                 ),

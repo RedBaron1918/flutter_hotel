@@ -16,8 +16,6 @@ class SmallCard extends StatefulWidget {
 }
 
 class _SmallCardState extends State<SmallCard> {
-  bool _isFavorite = false;
-
   @override
   void initState() {
     super.initState();
@@ -30,7 +28,7 @@ class _SmallCardState extends State<SmallCard> {
       child: Card(
         color: const Color.fromARGB(255, 241, 241, 241),
         child: Container(
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: const BoxDecoration(color: Colors.white),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
