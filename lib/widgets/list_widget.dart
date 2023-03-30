@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotelflutter/pages/detail_widget.dart';
-import '../model/hotel.dart';
+import '../model/models.dart';
 
 class ListWidget extends StatelessWidget {
   const ListWidget({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../model/hotel.dart';
+import '../model/models.dart';
 import '../widgets/shadow_icon_widget.dart';
 
 class DetailWidget extends StatefulWidget {

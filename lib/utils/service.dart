@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
 import '../model/hotel.dart';
 
 final Map<String, HotelList> _cachedResponses = {};

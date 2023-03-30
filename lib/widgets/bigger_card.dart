@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotelflutter/widgets/fade_in_image_widget.dart';
-import '../model/hotel.dart';
+import '../model/models.dart';
 
 class BiggerCard extends StatefulWidget {
   const BiggerCard({

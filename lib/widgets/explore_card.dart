@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../model/hotel.dart';
+import '../model/models.dart';
 
 class ExploreCard extends StatefulWidget {
   const ExploreCard({
