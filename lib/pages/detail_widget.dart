@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/hotel.dart';
+import '../widgets/shadow_icon_widget.dart';
 
 class DetailWidget extends StatefulWidget {
   const DetailWidget({
@@ -101,9 +102,31 @@ class CardDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<ShadowIconWidget> icons = const [
+      ShadowIconWidget(
+        icon: Icons.bed,
+        text: "Twin bed",
+      ),
+      ShadowIconWidget(
+        icon: Icons.wifi,
+        text: "Free wifi",
+      ),
+      ShadowIconWidget(
+        icon: Icons.directions_car_rounded,
+        text: "Parking",
+      ),
+      ShadowIconWidget(
+        icon: Icons.location_city,
+        text: "City View",
+      ),
+      ShadowIconWidget(
+        icon: Icons.fastfood_rounded,
+        text: "Food",
+      ),
+    ];
     return Container(
       height: MediaQuery.of(context).size.height * 0.65,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12),
       decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -142,30 +165,12 @@ class CardDetail extends StatelessWidget {
             ),
           ),
           Wrap(
-            spacing: 5,
+            spacing: 4,
             runSpacing: 8,
-            children: const [
-              IconWidget(
-                icon: Icons.bed,
-                text: "Twin bed",
-              ),
-              IconWidget(
-                icon: Icons.wifi,
-                text: "Free wifi",
-              ),
-              IconWidget(
-                icon: Icons.directions_car_rounded,
-                text: "Parking",
-              ),
-              IconWidget(
-                icon: Icons.location_city,
-                text: "City View",
-              ),
-              IconWidget(
-                icon: Icons.fastfood_rounded,
-                text: "Food",
-              ),
-            ],
+            children: List.generate(
+              icons.length,
+              (index) => icons[index],
+            ),
           ),
           const Text(
             "Description",
@@ -252,7 +257,7 @@ class IconWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, color: Color.fromARGB(255, 128, 128, 128)),
+          Icon(icon, color: const Color.fromARGB(255, 128, 128, 128)),
           Text(
             text,
             style: const TextStyle(

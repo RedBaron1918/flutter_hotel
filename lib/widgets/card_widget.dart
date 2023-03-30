@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotelflutter/widgets/fade_in_image_widget.dart';
 import '../model/hotel.dart';
 
 class CardWidget extends StatefulWidget {
@@ -35,17 +36,13 @@ class _CardWidgetState extends State<CardWidget> {
           children: [
             Stack(
               children: [
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.5,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.6,
                   height: 150,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                        widget.room?.photos?[0].urlOriginal ?? '',
-                      ),
-                      fit: BoxFit.fill,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
+                  child: FadeInImageWidget(
+                    photo: widget.room!.photos![0].urlOriginal!,
+                    radius: 6,
+                    fit: BoxFit.cover,
                   ),
                 ),
                 Positioned(
@@ -88,7 +85,7 @@ class _CardWidgetState extends State<CardWidget> {
                     style: const TextStyle(
                       color: Color(0xFF333333),
                       fontWeight: FontWeight.w600,
-                      fontSize: 15,
+                      fontSize: 18,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

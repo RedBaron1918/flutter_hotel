@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotelflutter/widgets/fade_in_image_widget.dart';
 import '../model/hotel.dart';
 
 class SmallCard extends StatefulWidget {
@@ -33,13 +34,11 @@ class _SmallCardState extends State<SmallCard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(2),
-                child: Image.network(
-                  widget.room?.photos?[0].urlMax300 ?? '',
-                  height: 150,
-                  fit: BoxFit.cover,
-                ),
+              FadeInImageWidget(
+                photo: widget.room!.photos![0].urlMax300!,
+                fit: BoxFit.cover,
+                height: 150,
+                radius: 2,
               ),
               const SizedBox(
                 height: 7,
