@@ -129,9 +129,12 @@ class CardDetail extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.65,
       padding: const EdgeInsets.all(12),
       decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(36), topRight: Radius.circular(36))),
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(36),
+          topRight: Radius.circular(36),
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

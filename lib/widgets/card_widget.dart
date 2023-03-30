@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotelflutter/widgets/circle_icon.dart';
 import 'package:hotelflutter/widgets/fade_in_image_widget.dart';
+import 'package:hotelflutter/widgets/text_container.dart';
 import '../model/models.dart';
 
 class CardWidget extends StatefulWidget {
@@ -27,6 +28,38 @@ class _CardWidgetState extends State<CardWidget> {
 
   @override
   Widget build(BuildContext context) {
+    List<CircleIcon> icons = const [
+      CircleIcon(
+        icon: Icons.bed,
+        backgroundColor: Color.fromARGB(255, 250, 250, 250),
+        iconColor: Color.fromARGB(255, 255, 124, 124),
+        iconSize: 18,
+      ),
+      CircleIcon(
+        icon: Icons.wifi,
+        backgroundColor: Color.fromARGB(255, 250, 250, 250),
+        iconColor: Color.fromARGB(255, 255, 124, 124),
+        iconSize: 18,
+      ),
+      CircleIcon(
+        icon: Icons.directions_car_rounded,
+        iconSize: 18,
+        backgroundColor: Color.fromARGB(255, 250, 250, 250),
+        iconColor: Color.fromARGB(255, 255, 124, 124),
+      ),
+      CircleIcon(
+        icon: Icons.location_city,
+        backgroundColor: Color.fromARGB(255, 250, 250, 250),
+        iconColor: Color.fromARGB(255, 255, 124, 124),
+        iconSize: 18,
+      ),
+      CircleIcon(
+        icon: Icons.fastfood_rounded,
+        iconSize: 18,
+        backgroundColor: Color.fromARGB(255, 250, 250, 250),
+        iconColor: Color.fromARGB(255, 255, 124, 124),
+      ),
+    ];
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       child: Card(
@@ -80,12 +113,21 @@ class _CardWidgetState extends State<CardWidget> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Text(
-                    "\$${widget.block?.minPrice?.price}",
-                    style: const TextStyle(
-                      color: Colors.black,
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  TextContainer(text: "\$${widget.block?.minPrice?.price}"),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Wrap(
+                    spacing: 4,
+                    runSpacing: 8,
+                    children: List.generate(
+                      icons.length,
+                      (index) => icons[index],
                     ),
-                  )
+                  ),
                 ],
               ),
             )

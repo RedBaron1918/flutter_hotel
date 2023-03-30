@@ -29,6 +29,8 @@ class CircleIcon extends StatelessWidget {
       ),
       child: IconButton(
         padding: EdgeInsets.zero,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         icon: Icon(icon),
         iconSize: iconSize,
         color: iconColor,

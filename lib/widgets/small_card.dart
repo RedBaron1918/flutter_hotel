@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotelflutter/widgets/fade_in_image_widget.dart';
+import 'package:hotelflutter/widgets/text_container.dart';
 import '../model/models.dart';
 
 class SmallCard extends StatefulWidget {
@@ -58,12 +59,9 @@ class _SmallCardState extends State<SmallCard> {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    Text(
-                      "\$${widget.block?.minPrice?.price}",
-                      style: const TextStyle(
-                        color: Colors.black,
-                      ),
-                    )
+                    TextContainer(
+                        text: "\$${widget.block?.minPrice?.price}",
+                        fontSize: 10),
                   ],
                 ),
               )

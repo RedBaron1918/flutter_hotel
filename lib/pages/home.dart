@@ -60,6 +60,7 @@ class _HomeState extends State<HomePage> {
                   return Padding(
                     padding: const EdgeInsets.all(12),
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(
@@ -84,7 +85,7 @@ class _HomeState extends State<HomePage> {
                           color: Colors.redAccent,
                           textColor: Colors.redAccent,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Row(
@@ -103,7 +104,7 @@ class _HomeState extends State<HomePage> {
                           color: Colors.red,
                         ),
                         SizedBox(
-                          height: 260,
+                          height: 290,
                           child: ListWidget(
                             dir: Axis.horizontal,
                             hotelData: snapshot.data ?? HotelList(),
