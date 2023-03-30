@@ -1,7 +1,7 @@
 export "room.dart";
 export "block.dart";
 export "hotel.dart";
-export "block_text.dart";
+export 'policy.dart';
 export "detail_plan.dart";
 export "photo.dart";
 export "agenumerval.dart";

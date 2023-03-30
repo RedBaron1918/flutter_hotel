@@ -1,26 +1,5 @@
 import 'models.dart';
 
-class BlockText {
-  BlockText({
-    this.policies,
-  });
-
-  List<Policy>? policies;
-
-  factory BlockText.fromJson(Map<String, dynamic> json) => BlockText(
-        policies: json["policies"] == null
-            ? []
-            : List<Policy>.from(
-                json["policies"]!.map((x) => Policy.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "policies": policies == null
-            ? []
-            : List<dynamic>.from(policies!.map((x) => x.toJson())),
-      };
-}
-
 class Policy {
   Policy({
     this.policyClass,
