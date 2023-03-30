@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/models.dart';
+import '../widgets/circle_icon.dart';
 import '../widgets/shadow_icon_widget.dart';
 
 class DetailWidget extends StatefulWidget {
@@ -190,21 +191,11 @@ class CardDetail extends StatelessWidget {
           ),
           Row(
             children: [
-              Container(
-                height: 40,
-                width: 40,
-                decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 149, 255, 152),
-                    shape: BoxShape.circle),
-                child: IconButton(
-                  padding: EdgeInsets.zero,
-                  icon: const Icon(
-                    Icons.phone,
-                  ),
-                  iconSize: 30,
-                  color: Colors.white,
-                  onPressed: () {},
-                ),
+              CircleIcon(
+                icon: Icons.phone,
+                backgroundColor: const Color.fromARGB(255, 149, 255, 152),
+                iconColor: Colors.white,
+                callBack: () {},
               ),
               const SizedBox(
                 width: 10,

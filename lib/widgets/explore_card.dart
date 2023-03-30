@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotelflutter/widgets/circle_icon.dart';
 import '../model/models.dart';
 
 class ExploreCard extends StatefulWidget {
@@ -49,26 +50,15 @@ class _ExploreCardState extends State<ExploreCard> {
                 Positioned(
                   top: 8,
                   right: 8,
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: const BoxDecoration(
-                        color: Colors.white, shape: BoxShape.circle),
-                    child: IconButton(
-                      padding: EdgeInsets.zero,
-                      icon: Icon(
-                        _isFavorite
-                            ? Icons.favorite
-                            : Icons.favorite_border_outlined,
-                      ),
-                      iconSize: 30,
-                      color: Colors.red,
-                      onPressed: () {
-                        setState(() {
-                          _isFavorite = !_isFavorite;
-                        });
-                      },
-                    ),
+                  child: CircleIcon(
+                    icon: _isFavorite
+                        ? Icons.favorite
+                        : Icons.favorite_border_outlined,
+                    callBack: () {
+                      setState(() {
+                        _isFavorite = !_isFavorite;
+                      });
+                    },
                   ),
                 ),
               ],

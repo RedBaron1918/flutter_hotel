@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotelflutter/widgets/circle_icon.dart';
 import 'package:hotelflutter/widgets/fade_in_image_widget.dart';
 import '../model/models.dart';
 
@@ -29,7 +30,7 @@ class _CardWidgetState extends State<CardWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       child: Card(
-        color: const Color.fromARGB(255, 241, 241, 241),
+        color: const Color.fromARGB(255, 255, 255, 255),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +39,7 @@ class _CardWidgetState extends State<CardWidget> {
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.6,
-                  height: 150,
+                  height: 140,
                   child: FadeInImageWidget(
                     photo: widget.room!.photos![0].urlOriginal!,
                     radius: 6,
@@ -48,26 +49,15 @@ class _CardWidgetState extends State<CardWidget> {
                 Positioned(
                   top: 8,
                   right: 8,
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: const BoxDecoration(
-                        color: Colors.white, shape: BoxShape.circle),
-                    child: IconButton(
-                      padding: EdgeInsets.zero,
-                      icon: Icon(
-                        _isFavorite
-                            ? Icons.favorite
-                            : Icons.favorite_border_outlined,
-                      ),
-                      iconSize: 30,
-                      color: Colors.red,
-                      onPressed: () {
-                        setState(() {
-                          _isFavorite = !_isFavorite;
-                        });
-                      },
-                    ),
+                  child: CircleIcon(
+                    icon: _isFavorite
+                        ? Icons.favorite
+                        : Icons.favorite_border_outlined,
+                    callBack: () {
+                      setState(() {
+                        _isFavorite = !_isFavorite;
+                      });
+                    },
                   ),
                 ),
               ],

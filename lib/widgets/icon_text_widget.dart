@@ -5,12 +5,17 @@ class IconTextWidget extends StatelessWidget {
     required this.icon,
     required this.text,
     required this.color,
+    this.textColor = const Color(0xFF333333),
+    this.iconSize,
+    this.textSize = 22,
     super.key,
   });
   final IconData icon;
   final String text;
   final Color color;
-
+  final Color? textColor;
+  final double? iconSize;
+  final double? textSize;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,13 +23,15 @@ class IconTextWidget extends StatelessWidget {
         Icon(
           icon,
           color: color,
+          size: iconSize,
         ),
         Text(
           text,
-          style: const TextStyle(
-              color: Color(0xFF333333),
-              fontSize: 22,
-              fontWeight: FontWeight.w600),
+          style: TextStyle(
+            color: textColor,
+            fontSize: textSize,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ],
     );
