@@ -18,9 +18,18 @@ class SmallCard extends StatefulWidget {
 }
 
 class _SmallCardState extends State<SmallCard> {
+  String _nameWithoutPolocyShort = "";
   @override
   void initState() {
     super.initState();
+    _initializenameWithoutPolocy();
+  }
+
+  void _initializenameWithoutPolocy() {
+    String nameWithoutPolocy = widget.block?.nameWithoutPolicy ?? '';
+    _nameWithoutPolocyShort = nameWithoutPolocy.length >= 13
+        ? "${nameWithoutPolocy.substring(0, 13)}..."
+        : nameWithoutPolocy;
   }
 
   @override
@@ -50,18 +59,19 @@ class _SmallCardState extends State<SmallCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.block?.nameWithoutPolicy ?? '',
+                      _nameWithoutPolocyShort,
                       style: const TextStyle(
                         color: Color(0xFF333333),
                         fontWeight: FontWeight.w600,
                         fontSize: 18,
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(
+                      height: 4,
                     ),
                     TextContainer(
                         text: "\$${widget.block?.minPrice?.price}",
-                        fontSize: 10),
+                        fontSize: 11),
                   ],
                 ),
               )
