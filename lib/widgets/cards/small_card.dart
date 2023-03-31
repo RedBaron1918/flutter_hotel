@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotelflutter/widgets/fade_in_image_widget.dart';
 import 'package:hotelflutter/widgets/text_container.dart';
-import '../model/models.dart';
+import '../../model/models.dart';
 
 class SmallCard extends StatefulWidget {
   const SmallCard({

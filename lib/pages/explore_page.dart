@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hotelflutter/utils/service.dart';
-import 'package:hotelflutter/widgets/explore_card.dart';
+import 'package:hotelflutter/widgets/cards/explore_card.dart';
 import 'package:hotelflutter/widgets/future_widget.dart';
 import 'package:hotelflutter/widgets/search_bar.dart';
 import 'package:hotelflutter/widgets/sliver_appbar_widget.dart';
 import '../model/hotel.dart';
-import '../widgets/circle_icon.dart';
+import '../widgets/icons/circle_icon.dart';
 import '../widgets/list_widget.dart';
 
 class ExplorePage extends StatelessWidget {

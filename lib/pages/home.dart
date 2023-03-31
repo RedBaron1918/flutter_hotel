@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hotelflutter/widgets/bigger_card.dart';
-import 'package:hotelflutter/widgets/card_widget.dart';
-import 'package:hotelflutter/widgets/circle_icon.dart';
+import 'package:hotelflutter/widgets/cards/bigger_card.dart';
+import 'package:hotelflutter/widgets/cards/card_widget.dart';
+import 'package:hotelflutter/widgets/icons/circle_icon.dart';
 import 'package:hotelflutter/widgets/search_bar.dart';
-import 'package:hotelflutter/widgets/small_card.dart';
+import 'package:hotelflutter/widgets/cards/small_card.dart';
 import '../model/hotel.dart';
 import '../utils/service.dart';
 import '../widgets/future_widget.dart';
-import '../widgets/icon_text_widget.dart';
+import '../widgets/icons/icon_text_widget.dart';
 import '../widgets/list_widget.dart';
 import '../widgets/sliver_appbar_widget.dart';
 

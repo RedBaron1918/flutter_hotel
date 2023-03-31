@@ -17,7 +17,7 @@ class Services {
       _cachedResponses[hotelUrl] = videosList;
       return videosList;
     } else {
-      throw Exception('Failed to fetch playlist data');
+      throw Exception('Failed to fetch data');
     }
   }
 

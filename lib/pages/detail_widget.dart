@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hotelflutter/widgets/fade_in_image_widget.dart';
 
 import '../model/models.dart';
-import '../widgets/circle_icon.dart';
+import '../widgets/icons/circle_icon.dart';
 import '../widgets/text_container.dart';
 
 class DetailWidget extends StatefulWidget {
