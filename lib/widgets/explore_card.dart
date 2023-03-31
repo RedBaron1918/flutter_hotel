@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotelflutter/widgets/circle_icon.dart';
+import 'package:hotelflutter/widgets/fade_in_image_widget.dart';
+import 'package:hotelflutter/widgets/text_container.dart';
 import '../model/models.dart';
 
 class ExploreCard extends StatefulWidget {
@@ -34,18 +36,15 @@ class _ExploreCardState extends State<ExploreCard> {
             color: Colors.white, borderRadius: BorderRadius.circular(5)),
         padding: const EdgeInsets.all(10),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Stack(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
-                  child: Image.network(
-                    widget.room?.photos?[0].url640X200 ?? '',
-                    height: 170,
-                    fit: BoxFit.fill,
-                  ),
+                FadeInImageWidget(
+                  height: 160,
+                  photo: widget.room!.photos![0].url640X200!,
+                  radius: 6,
+                  fit: BoxFit.fill,
                 ),
                 Positioned(
                   top: 8,
@@ -82,13 +81,9 @@ class _ExploreCardState extends State<ExploreCard> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      Text(
-                        "\$${widget.block?.minPrice?.price}",
-                        style: const TextStyle(
-                          color: Color.fromARGB(255, 255, 191, 94),
-                          fontWeight: FontWeight.w900,
-                          fontSize: 18,
-                        ),
+                      TextContainer(
+                        text: "\$${widget.block?.minPrice?.price}",
+                        fontSize: 14,
                       ),
                     ],
                   ),

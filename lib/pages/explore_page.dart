@@ -5,6 +5,7 @@ import 'package:hotelflutter/widgets/future_widget.dart';
 import 'package:hotelflutter/widgets/search_bar.dart';
 import 'package:hotelflutter/widgets/sliver_appbar_widget.dart';
 import '../model/hotel.dart';
+import '../widgets/circle_icon.dart';
 import '../widgets/list_widget.dart';
 
 class ExplorePage extends StatelessWidget {
@@ -25,7 +26,16 @@ class ExplorePage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SearchBar(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Expanded(child: SearchBar()),
+                      CircleIcon(icon: Icons.tune),
+                    ],
+                  ),
+                ),
                 FutureWidget(
                     futureData: Services.futureData,
                     builder: (AsyncSnapshot<HotelList> snapshot) {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hotelflutter/widgets/fade_in_image_widget.dart';
 
 import '../model/models.dart';
 import '../widgets/circle_icon.dart';
-import '../widgets/shadow_icon_widget.dart';
+import '../widgets/text_container.dart';
 
 class DetailWidget extends StatefulWidget {
   const DetailWidget({
@@ -41,56 +42,67 @@ class _DetailWidgetState extends State<DetailWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 211, 211, 211),
-        title: Text(widget.block?.nameWithoutPolicy ?? ""),
+      body: SafeArea(
+        child: Stack(children: [
+          Positioned.fill(
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  child: PageView.builder(
+                    itemCount: widget.room?.photos?.length,
+                    pageSnapping: true,
+                    onPageChanged: (page) {
+                      setState(() {
+                        activePage = page;
+                      });
+                    },
+                    itemBuilder: (context, index) {
+                      Photo photo = widget.room!.photos![index];
+                      return FadeInImageWidget(
+                        photo: photo.urlOriginal!,
+                        radius: 6,
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  ),
+                ),
+                Positioned(
+                  left: 10,
+                  top: 10,
+                  child: CircleIcon(
+                    iconSize: 25,
+                    icon: Icons.arrow_back,
+                    callBack: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                Positioned(
+                  top: 235.0,
+                  right: 0.0,
+                  left: 0.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:
+                        indicators(widget.room?.photos?.length, activePage),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: CardDetail(
+              block: widget.block!,
+              room: widget.room,
+            ),
+          )
+        ]),
       ),
-      body: Stack(children: [
-        Positioned.fill(
-          child: Stack(
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.3,
-                child: PageView.builder(
-                  itemCount: widget.room?.photos?.length,
-                  pageSnapping: true,
-                  onPageChanged: (page) {
-                    setState(() {
-                      activePage = page;
-                    });
-                  },
-                  itemBuilder: (context, index) {
-                    Photo photo = widget.room!.photos![index];
-                    return Image.network(
-                      photo.urlOriginal ?? "something bad happend",
-                      fit: BoxFit.cover,
-                    );
-                  },
-                ),
-              ),
-              Positioned(
-                top: 5.0,
-                right: 0.0,
-                left: 0.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: indicators(widget.room?.photos?.length, activePage),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: CardDetail(
-            block: widget.block!,
-            room: widget.room,
-          ),
-        )
-      ]),
     );
   }
 }
@@ -103,26 +115,36 @@ class CardDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<ShadowIconWidget> icons = const [
-      ShadowIconWidget(
+    List<CircleIcon> icons = const [
+      CircleIcon(
         icon: Icons.bed,
-        text: "Twin bed",
+        backgroundColor: Color.fromARGB(255, 250, 250, 250),
+        iconColor: Color.fromARGB(255, 255, 124, 124),
+        iconSize: 30,
       ),
-      ShadowIconWidget(
+      CircleIcon(
         icon: Icons.wifi,
-        text: "Free wifi",
+        backgroundColor: Color.fromARGB(255, 250, 250, 250),
+        iconColor: Color.fromARGB(255, 255, 124, 124),
+        iconSize: 30,
       ),
-      ShadowIconWidget(
+      CircleIcon(
         icon: Icons.directions_car_rounded,
-        text: "Parking",
+        iconSize: 30,
+        backgroundColor: Color.fromARGB(255, 250, 250, 250),
+        iconColor: Color.fromARGB(255, 255, 124, 124),
       ),
-      ShadowIconWidget(
+      CircleIcon(
         icon: Icons.location_city,
-        text: "City View",
+        backgroundColor: Color.fromARGB(255, 250, 250, 250),
+        iconColor: Color.fromARGB(255, 255, 124, 124),
+        iconSize: 30,
       ),
-      ShadowIconWidget(
+      CircleIcon(
         icon: Icons.fastfood_rounded,
-        text: "Food",
+        iconSize: 30,
+        backgroundColor: Color.fromARGB(255, 250, 250, 250),
+        iconColor: Color.fromARGB(255, 255, 124, 124),
       ),
     ];
     return Container(
@@ -150,13 +172,9 @@ class CardDetail extends StatelessWidget {
                   fontSize: 22,
                 ),
               ),
-              Text(
-                "\$${block.minPrice?.price}",
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 255, 191, 94),
-                  fontWeight: FontWeight.w900,
-                  fontSize: 18,
-                ),
+              TextContainer(
+                text: "\$${block.minPrice?.price}",
+                fontSize: 18,
               ),
             ],
           ),
@@ -168,9 +186,8 @@ class CardDetail extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          Wrap(
-            spacing: 4,
-            runSpacing: 8,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: List.generate(
               icons.length,
               (index) => icons[index],
@@ -194,70 +211,22 @@ class CardDetail extends StatelessWidget {
           ),
           Row(
             children: [
-              CircleIcon(
-                icon: Icons.phone,
-                backgroundColor: const Color.fromARGB(255, 149, 255, 152),
-                iconColor: Colors.white,
-                callBack: () {},
-              ),
-              const SizedBox(
-                width: 10,
-              ),
               Expanded(
                 child: MaterialButton(
                     shape: const StadiumBorder(),
+                    height: 50,
                     padding: const EdgeInsets.all(5),
-                    color: Colors.amber,
+                    color: const Color.fromARGB(255, 255, 96, 96),
                     onPressed: () {},
                     child: const Text(
-                      'Material Button',
-                      style: TextStyle(color: Colors.white),
+                      'Book Now',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
                     )),
               ),
             ],
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class IconWidget extends StatelessWidget {
-  const IconWidget({
-    super.key,
-    required this.icon,
-    required this.text,
-  });
-  final IconData icon;
-  final String text;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: const Color.fromARGB(255, 255, 255, 255),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 2,
-            offset: const Offset(0, 3), // changes position of shadow
-          ),
-        ],
-      ),
-      padding: const EdgeInsets.all(4),
-      height: 70,
-      width: 70,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: const Color.fromARGB(255, 128, 128, 128)),
-          Text(
-            text,
-            style: const TextStyle(
-              color: Color.fromARGB(255, 122, 122, 122),
-              fontWeight: FontWeight.w900,
-            ),
           )
         ],
       ),

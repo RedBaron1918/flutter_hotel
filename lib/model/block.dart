@@ -60,7 +60,6 @@ class Block {
   int? breakfastIncluded;
 
   factory Block.fromJson(Map<String, dynamic> json) {
-    ;
     return Block(
       priceBreakdown: json['price_breakdown'] == null
           ? null

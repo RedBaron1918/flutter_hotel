@@ -1,5 +1,3 @@
-import 'models.dart';
-
 class FluffyExtraCharge {
   FluffyExtraCharge({
     this.inclusionType,

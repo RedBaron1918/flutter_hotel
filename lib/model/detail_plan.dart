@@ -1,5 +1,3 @@
-import 'models.dart';
-
 class DetailMealplan {
   DetailMealplan({
     this.currency,

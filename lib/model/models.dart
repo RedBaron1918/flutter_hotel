@@ -12,7 +12,6 @@ export "timeline.dart";
 export "product_price_breakdown.dart";
 export "item.dart";
 export "bed_configuration.dart";
-export "base.dart";
 export "group_by_price.dart";
 export "facility.dart";
 export "private_bathroom_highlight.dart";

@@ -1,5 +1,3 @@
-import 'models.dart';
-
 class Policy {
   Policy({
     this.policyClass,

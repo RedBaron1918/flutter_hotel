@@ -1,5 +1,3 @@
-import 'models.dart';
-
 class PrivateBathroomHighlight {
   PrivateBathroomHighlight({
     this.hasHighlight,
