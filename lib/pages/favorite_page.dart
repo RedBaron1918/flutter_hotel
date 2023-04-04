@@ -40,30 +40,42 @@ class FavoritePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                ListView.builder(
-                  itemCount: hotels.length,
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    final hotel = hotels[index];
-                    final block = blocks[index];
-                    return InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => DetailWidget(
-                              block: block,
-                              room: hotel,
-                            ),
-                          ),
-                        );
-                      },
-                      child: SizedBox(
-                          height: 290,
-                          child: ExploreCard(room: hotel, block: block)),
-                    );
-                  },
-                ),
+                hotels.isNotEmpty
+                    ? GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 250,
+                                childAspectRatio: 1 / 2,
+                                crossAxisSpacing: 15,
+                                mainAxisSpacing: 20),
+                        itemCount: hotels.length,
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final hotel = hotels[index];
+                          final block = blocks[index];
+                          return InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => DetailWidget(
+                                    block: block,
+                                    room: hotel,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: CardWidget(room: hotel, block: block),
+                          );
+                        },
+                      )
+                    : const Center(
+                        child: Text(
+                          "you have no Favorites yet!",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                      )
               ],
             ),
           )
