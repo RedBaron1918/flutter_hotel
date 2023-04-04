@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotelflutter/pages/explore_page.dart';
+import 'package:hotelflutter/pages/favorite_page.dart';
 import 'package:hotelflutter/pages/home.dart';
 import 'package:hotelflutter/pages/profile.dart';
 import 'package:hotelflutter/widgets/scroll_to_hide.dart';
@@ -16,6 +17,7 @@ class _AppState extends State<App> {
   List<Widget> pageList = [
     const HomePage(),
     const ExplorePage(),
+    const FavoritePage(),
     const ProfilePage()
   ];
   late final ScrollController controller = ScrollController();
@@ -53,6 +55,8 @@ class _AppState extends State<App> {
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.travel_explore), label: 'explore'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.favorite), label: 'favorite'),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'profile',
