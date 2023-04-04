@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../model/models.dart';
 
 class FavoriteProvider extends ChangeNotifier {
-  List<Room> _hotels = [];
+  final List<Room> _hotels = [];
   List<Room> get hotels => _hotels;
-  List<Block> _blocks = [];
+  final List<Block> _blocks = [];
   List<Block> get blocks => _blocks;
   void toggleFavorite(Room hotel, Block block) {
     final isExist = _hotels.contains(hotel) && _blocks.contains(block);
