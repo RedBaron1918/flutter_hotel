@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 import 'models.dart';
 
@@ -11,24 +13,29 @@ class HotelList {
   HotelList({
     this.totalBlocks,
     this.rooms,
+    this.id,
     this.block,
     this.hotelId,
   });
 
   int? totalBlocks;
   Map<String, Room>? rooms;
+  List<dynamic>? id;
   List<Block>? block;
   int? hotelId;
 
-  factory HotelList.fromJson(Map<String, dynamic> json) => HotelList(
-        totalBlocks: json["total_blocks"],
-        rooms: Map.from(json["rooms"]!)
-            .map((k, v) => MapEntry<String, Room>(k, Room.fromJson(v))),
-        block: json["block"] == null
-            ? []
-            : List<Block>.from(json["block"]!.map((x) => Block.fromJson(x))),
-        hotelId: json["hotel_id"],
-      );
+  factory HotelList.fromJson(Map<String, dynamic> json) {
+    return HotelList(
+      totalBlocks: json["total_blocks"],
+      rooms: Map.from(json["rooms"]!)
+          .map((k, v) => MapEntry<String, Room>(k, Room.fromJson(v))),
+      id: Map.from(json["rooms"]!).keys.toList(),
+      block: json["block"] == null
+          ? []
+          : List<Block>.from(json["block"]!.map((x) => Block.fromJson(x))),
+      hotelId: json["hotel_id"],
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "total_blocks": totalBlocks,

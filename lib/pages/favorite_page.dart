@@ -43,10 +43,11 @@ class FavoritePage extends StatelessWidget {
                     ? GridView.builder(
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 250,
-                                childAspectRatio: 1 / 2,
-                                crossAxisSpacing: 15,
-                                mainAxisSpacing: 20),
+                          maxCrossAxisExtent: 250,
+                          childAspectRatio: 1 / 2,
+                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 20,
+                        ),
                         itemCount: hotels.length,
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
