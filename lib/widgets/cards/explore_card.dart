@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hotelflutter/provider/favorite_provider.dart';
-import 'package:hotelflutter/widgets/icons/circle_icon.dart';
 import 'package:hotelflutter/widgets/fade_in_image_widget.dart';
 import 'package:hotelflutter/widgets/text_container.dart';
-import 'package:provider/provider.dart';
 import '../../model/models.dart';
+import '../icons/provider_icon.dart';
 
 class ExploreCard extends StatefulWidget {
   const ExploreCard({
@@ -26,11 +24,8 @@ class _ExploreCardState extends State<ExploreCard> {
     super.initState();
   }
 
-  bool _isFavorite = false;
-
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<FavoriteProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
       child: Container(
@@ -50,17 +45,10 @@ class _ExploreCardState extends State<ExploreCard> {
                   fit: BoxFit.fill,
                 ),
                 Positioned(
-                  top: 8,
-                  right: 8,
-                  child: CircleIcon(
-                    icon: provider.isExist(widget.room!, widget.block!)
-                        ? Icons.favorite
-                        : Icons.favorite_border_outlined,
-                    callBack: () {
-                      provider.toggleFavorite(widget.room!, widget.block!);
-                    },
-                  ),
-                ),
+                    top: 8,
+                    right: 8,
+                    child:
+                        ProviderIcon(room: widget.room!, block: widget.block!)),
               ],
             ),
             const SizedBox(

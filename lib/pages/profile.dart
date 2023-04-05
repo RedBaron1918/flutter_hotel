@@ -35,7 +35,7 @@ class ProfilePage extends StatelessWidget {
       ),
     ];
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 250, 250, 250),
+      backgroundColor: const Color.fromARGB(255, 250, 250, 250),
       body: CustomScrollView(
         slivers: [
           const SliverAppBarWidget(

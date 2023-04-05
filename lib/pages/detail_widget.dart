@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hotelflutter/provider/favorite_provider.dart';
 import 'package:hotelflutter/widgets/fade_in_image_widget.dart';
-import 'package:provider/provider.dart';
 
 import '../model/models.dart';
 import '../widgets/icons/circle_icon.dart';
+import '../widgets/icons/provider_icon.dart';
 import '../widgets/text_container.dart';
 
 class DetailWidget extends StatefulWidget {
@@ -42,7 +41,6 @@ class _DetailWidgetState extends State<DetailWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<FavoriteProvider>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -96,17 +94,9 @@ class _DetailWidgetState extends State<DetailWidget> {
             ),
           ),
           Positioned(
-            right: 10,
-            top: 10,
-            child: CircleIcon(
-              icon: provider.isExist(widget.room!, widget.block!)
-                  ? Icons.favorite
-                  : Icons.favorite_border_outlined,
-              callBack: () {
-                provider.toggleFavorite(widget.room!, widget.block!);
-              },
-            ),
-          ),
+              right: 10,
+              top: 10,
+              child: ProviderIcon(room: widget.room!, block: widget.block!)),
           Positioned(
             bottom: 0,
             left: 0,
