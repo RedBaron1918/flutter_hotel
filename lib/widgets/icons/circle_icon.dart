@@ -35,7 +35,9 @@ class CircleIcon extends StatelessWidget {
         iconSize: iconSize,
         color: iconColor,
         onPressed: () {
-          callBack!();
+          if (callBack != null) {
+            callBack!();
+          }
         },
       ),
     );

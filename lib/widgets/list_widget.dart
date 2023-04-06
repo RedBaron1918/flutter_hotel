@@ -22,7 +22,7 @@ class ListWidget extends StatelessWidget {
       scrollDirection: dir,
       itemCount: hotelData.rooms?.length,
       itemBuilder: (context, index) {
-        final roomId = int.parse(hotelData.rooms!.keys.elementAt(index));
+        final roomId = int.parse(hotelData.id?[index]);
         final room = hotelData.rooms?[roomId.toString()]!;
         final block = hotelData.block?.firstWhere((b) => b.roomId == roomId);
         return InkWell(
