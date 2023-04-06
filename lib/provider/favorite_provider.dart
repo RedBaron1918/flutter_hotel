@@ -1,23 +1,31 @@
-import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 import '../model/models.dart';
 
-class FavoriteProvider extends ChangeNotifier {
-  final List<Room> _hotels = [];
-  List<Room> get hotels => _hotels;
-  final List<Block> _blocks = [];
-  List<Block> get blocks => _blocks;
+void saveFavorites(List<Room> hotels, List<Block> blocks) async {
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setString('hotels', jsonEncode(hotels));
+  prefs.setString('blocks', jsonEncode(blocks));
+}
 
-  void toggleFavorite(Room hotel, Block block) {
-    if (exists(hotel, block)) {
-      _hotels.remove(hotel);
-      _blocks.remove(block);
-    } else {
-      _hotels.add(hotel);
-      _blocks.add(block);
-    }
-    notifyListeners();
+Future<List<Room>> getFavoriteHotels() async {
+  final prefs = await SharedPreferences.getInstance();
+  final hotelsString = prefs.getString('hotels');
+  if (hotelsString != null) {
+    return List<Room>.from(
+        jsonDecode(hotelsString).map((x) => Room.fromJson(x)));
+  } else {
+    return [];
   }
+}
 
-  bool exists(Room hotel, Block block) =>
-      _hotels.contains(hotel) && _blocks.contains(block);
+Future<List<Block>> getFavoriteBlocks() async {
+  final prefs = await SharedPreferences.getInstance();
+  final blocksString = prefs.getString('blocks');
+  if (blocksString != null) {
+    return List<Block>.from(
+        jsonDecode(blocksString).map((x) => Block.fromJson(x)));
+  } else {
+    return [];
+  }
 }

@@ -4,18 +4,40 @@ import 'package:hotelflutter/provider/favorite_provider.dart';
 import 'package:hotelflutter/widgets/cards/card_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../model/models.dart';
 import '../widgets/icons/circle_icon.dart';
 import '../widgets/search_bar.dart';
 import '../widgets/sliver_appbar_widget.dart';
 
-class FavoritePage extends StatelessWidget {
+class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
 
   @override
+  State<FavoritePage> createState() => _FavoritePageState();
+}
+
+class _FavoritePageState extends State<FavoritePage> {
+  List<Room> _hotels = [];
+  List<Block> _blocks = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFavorites();
+  }
+
+  void _loadFavorites() async {
+    final hotels = await getFavoriteHotels();
+    final blocks = await getFavoriteBlocks();
+
+    setState(() {
+      _hotels = hotels;
+      _blocks = blocks;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<FavoriteProvider>(context);
-    final hotels = provider.hotels;
-    final blocks = provider.blocks;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 250, 250, 250),
       body: CustomScrollView(
@@ -39,7 +61,7 @@ class FavoritePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                hotels.isNotEmpty
+                _hotels.isNotEmpty
                     ? GridView.builder(
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -48,12 +70,12 @@ class FavoritePage extends StatelessWidget {
                           crossAxisSpacing: 15,
                           mainAxisSpacing: 20,
                         ),
-                        itemCount: hotels.length,
+                        itemCount: _hotels.length,
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
-                          final hotel = hotels[index];
-                          final block = blocks[index];
+                          final hotel = _hotels[index];
+                          final block = _blocks[index];
                           return InkWell(
                             onTap: () {
                               Navigator.of(context).push(

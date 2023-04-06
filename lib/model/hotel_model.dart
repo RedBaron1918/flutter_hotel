@@ -30,9 +30,9 @@ class HotelList {
       rooms: Map.from(json["rooms"]!)
           .map((k, v) => MapEntry<String, Room>(k, Room.fromJson(v))),
       id: Map.from(json["rooms"]!).keys.toList(),
-      block: json["block"] == null
-          ? []
-          : List<Block>.from(json["block"]!.map((x) => Block.fromJson(x))),
+      block: json["block"] != null
+          ? List<Block>.from(json["block"]!.map((x) => Block.fromJson(x)))
+          : [],
       hotelId: json["hotel_id"],
     );
   }

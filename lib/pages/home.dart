@@ -4,7 +4,7 @@ import 'package:hotelflutter/widgets/cards/card_widget.dart';
 import 'package:hotelflutter/widgets/icons/circle_icon.dart';
 import 'package:hotelflutter/widgets/search_bar.dart';
 import 'package:hotelflutter/widgets/cards/small_card.dart';
-import '../model/hotel.dart';
+import '../model/hotel_model.dart';
 import '../utils/service.dart';
 import '../widgets/future_widget.dart';
 import '../widgets/icons/icon_text_widget.dart';

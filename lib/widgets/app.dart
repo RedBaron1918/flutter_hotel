@@ -24,14 +24,9 @@ class _AppState extends State<App> {
   late final ScrollController controller = ScrollController();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void dispose() {
-    super.dispose();
     controller.dispose();
+    super.dispose();
   }
 
   @override

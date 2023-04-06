@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../model/hotel.dart';
+import '../model/hotel_model.dart';
 
 class FutureWidget extends StatelessWidget {
   const FutureWidget({
