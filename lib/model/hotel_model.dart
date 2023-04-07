@@ -14,25 +14,28 @@ class HotelList {
     this.totalBlocks,
     this.rooms,
     this.id,
-    this.block,
     this.hotelId,
   });
 
   int? totalBlocks;
   Map<String, Room>? rooms;
   List<dynamic>? id;
-  List<Block>? block;
   int? hotelId;
 
   factory HotelList.fromJson(Map<String, dynamic> json) {
+    final blocks = json["block"] != null
+        ? List<Block>.from(json["block"]!.map((x) => Block.fromJson(x)))
+        : [];
+
     return HotelList(
       totalBlocks: json["total_blocks"],
-      rooms: Map.from(json["rooms"]!)
-          .map((k, v) => MapEntry<String, Room>(k, Room.fromJson(v))),
+      rooms: Map.from(json["rooms"]!).map((k, v) {
+        final roomBlock = blocks.firstWhere((e) => e.roomId == int.parse(k));
+        print(roomBlock);
+        return MapEntry<String, Room>(
+            k, Room.fromJson(v, v['block'] ?? roomBlock));
+      }),
       id: Map.from(json["rooms"]!).keys.toList(),
-      block: json["block"] != null
-          ? List<Block>.from(json["block"]!.map((x) => Block.fromJson(x)))
-          : [],
       hotelId: json["hotel_id"],
     );
   }
@@ -41,9 +44,6 @@ class HotelList {
         "total_blocks": totalBlocks,
         "rooms": Map.from(rooms!)
             .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
-        "block": block == null
-            ? []
-            : List<dynamic>.from(block!.map((x) => x.toJson())),
         "hotel_id": hotelId,
       };
 }

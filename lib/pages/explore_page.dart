@@ -42,8 +42,10 @@ class ExplorePage extends StatelessWidget {
                       return ListWidget(
                         dir: Axis.vertical,
                         hotelData: snapshot.data ?? HotelList(),
-                        builder: (context, room, block) {
-                          return ExploreCard(room: room, block: block);
+                        builder: (context, room) {
+                          return ExploreCard(
+                            room: room,
+                          );
                         },
                       );
                     }),

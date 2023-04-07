@@ -108,8 +108,8 @@ class _HomeState extends State<HomePage> {
                           child: ListWidget(
                             dir: Axis.horizontal,
                             hotelData: snapshot.data ?? HotelList(),
-                            builder: (context, room, block) {
-                              return CardWidget(room: room, block: block);
+                            builder: (context, room) {
+                              return CardWidget(room: room);
                             },
                           ),
                         ),
@@ -123,8 +123,8 @@ class _HomeState extends State<HomePage> {
                           child: ListWidget(
                             dir: Axis.horizontal,
                             hotelData: snapshot.data ?? HotelList(),
-                            builder: (context, room, block) {
-                              return BiggerCard(room: room, block: block);
+                            builder: (context, room) {
+                              return BiggerCard(room: room);
                             },
                           ),
                         ),
@@ -138,8 +138,11 @@ class _HomeState extends State<HomePage> {
                           child: ListWidget(
                             dir: Axis.horizontal,
                             hotelData: snapshot.data ?? HotelList(),
-                            builder: (context, room, block) {
-                              return SmallCard(room: room, block: block);
+                            builder: (
+                              context,
+                              room,
+                            ) {
+                              return SmallCard(room: room);
                             },
                           ),
                         )

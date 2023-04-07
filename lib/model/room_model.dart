@@ -12,6 +12,7 @@ class Room {
     this.description,
     this.bedConfigurations,
     this.privateBathroomHighlight,
+    this.block,
   });
 
   int? photosMaySorted;
@@ -24,8 +25,9 @@ class Room {
   String? description;
   List<BedConfiguration>? bedConfigurations;
   PrivateBathroomHighlight? privateBathroomHighlight;
+  Block? block;
 
-  factory Room.fromJson(Map<String, dynamic> json) => Room(
+  factory Room.fromJson(Map<String, dynamic> json, Block block) => Room(
         photosMaySorted: json["photos_may_sorted"],
         highlights: json["highlights"] == null
             ? []
@@ -52,6 +54,7 @@ class Room {
             ? null
             : PrivateBathroomHighlight.fromJson(
                 json["private_bathroom_highlight"]),
+        block: block,
       );
 
   Map<String, dynamic> toJson() => {
@@ -73,6 +76,7 @@ class Room {
             ? []
             : List<dynamic>.from(bedConfigurations!.map((x) => x.toJson())),
         "private_bathroom_highlight": privateBathroomHighlight?.toJson(),
+        "block": block!.toJson()
       };
 }
 

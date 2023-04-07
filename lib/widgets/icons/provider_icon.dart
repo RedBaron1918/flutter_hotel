@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hotelflutter/provider/favorite_provider.dart';
+import 'package:hotelflutter/provider/favorite_provider.dart'
+    as favorite_provider;
 import 'package:provider/provider.dart';
 import '../../model/models.dart';
 
@@ -11,7 +12,6 @@ class ProviderIcon extends StatefulWidget {
     this.backgroundColor = Colors.white,
     this.iconColor = Colors.red,
     required this.room,
-    required this.block,
     super.key,
   });
   final Color? iconColor;
@@ -20,7 +20,6 @@ class ProviderIcon extends StatefulWidget {
   final double? width;
   final double? iconSize;
   final Room room;
-  final Block block;
 
   @override
   _ProviderIconState createState() => _ProviderIconState();
@@ -28,36 +27,22 @@ class ProviderIcon extends StatefulWidget {
 
 class _ProviderIconState extends State<ProviderIcon> {
   bool _isFavorite = false;
-
+  List<Room?> favorites = [];
   @override
   void initState() {
     super.initState();
-    _loadIsFavorite();
+    isFavorite();
   }
 
-  void _loadIsFavorite() async {
-    final hotels = await getFavoriteHotels();
-    final blocks = await getFavoriteBlocks();
-    setState(() {
-      _isFavorite =
-          hotels.contains(widget.room) && blocks.contains(widget.block);
-    });
+  void isFavorite() async {
+    _isFavorite = await favorite_provider.isFavorite(widget.room);
+    setState(() {});
   }
 
   void _toggleFavorite() async {
-    final hotels = await getFavoriteHotels();
-    final blocks = await getFavoriteBlocks();
-    if (_isFavorite) {
-      hotels.remove(widget.room);
-      blocks.remove(widget.block);
-    } else {
-      hotels.add(widget.room);
-      blocks.add(widget.block);
-    }
-    saveFavorites(hotels, blocks);
-    setState(() {
-      _isFavorite = !_isFavorite;
-    });
+    favorite_provider.saveFavorite(widget.room.block!.roomId.toString());
+    _isFavorite = !_isFavorite;
+    setState(() {});
   }
 
   @override

@@ -17,8 +17,7 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
-  List<Room> _hotels = [];
-  List<Block> _blocks = [];
+  List<Room?> rooms = [];
 
   @override
   void initState() {
@@ -27,13 +26,9 @@ class _FavoritePageState extends State<FavoritePage> {
   }
 
   void _loadFavorites() async {
-    final hotels = await getFavoriteHotels();
-    final blocks = await getFavoriteBlocks();
-
-    setState(() {
-      _hotels = hotels;
-      _blocks = blocks;
-    });
+    rooms = await getFavorites();
+    print(rooms);
+    setState(() {});
   }
 
   @override
@@ -61,7 +56,7 @@ class _FavoritePageState extends State<FavoritePage> {
                     ],
                   ),
                 ),
-                _hotels.isNotEmpty
+                rooms.isNotEmpty
                     ? GridView.builder(
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -70,24 +65,21 @@ class _FavoritePageState extends State<FavoritePage> {
                           crossAxisSpacing: 15,
                           mainAxisSpacing: 20,
                         ),
-                        itemCount: _hotels.length,
+                        itemCount: rooms.length,
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
-                          final hotel = _hotels[index];
-                          final block = _blocks[index];
                           return InkWell(
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) => DetailWidget(
-                                    block: block,
-                                    room: hotel,
+                                    room: rooms[index],
                                   ),
                                 ),
                               );
                             },
-                            child: CardWidget(room: hotel, block: block),
+                            child: CardWidget(room: rooms[index]),
                           );
                         },
                       )

@@ -6,11 +6,9 @@ class BiggerCard extends StatefulWidget {
   const BiggerCard({
     Key? key,
     required this.room,
-    required this.block,
   }) : super(key: key);
 
   final Room? room;
-  final Block? block;
 
   @override
   State<BiggerCard> createState() => _BiggerCardState();
@@ -49,7 +47,7 @@ class _BiggerCardState extends State<BiggerCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.block?.nameWithoutPolicy ?? '',
+                    widget.room?.block?.nameWithoutPolicy ?? '',
                     style: const TextStyle(
                       color: Color(0xFF333333),
                       fontSize: 20,

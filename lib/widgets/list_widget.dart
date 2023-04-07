@@ -11,7 +11,7 @@ class ListWidget extends StatelessWidget {
   }) : super(key: key);
 
   final HotelList hotelData;
-  final Widget Function(BuildContext context, Room? room, Block? block) builder;
+  final Widget Function(BuildContext context, Room? room) builder;
   final Axis dir;
 
   @override
@@ -22,21 +22,19 @@ class ListWidget extends StatelessWidget {
       scrollDirection: dir,
       itemCount: hotelData.rooms?.length,
       itemBuilder: (context, index) {
-        final roomId = int.parse(hotelData.id?[index]);
-        final room = hotelData.rooms?[roomId.toString()]!;
-        final block = hotelData.block?.firstWhere((b) => b.roomId == roomId);
+        final roomId = hotelData.id?[index];
+        final room = hotelData.rooms?[roomId]!;
         return InkWell(
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => DetailWidget(
-                  block: block,
                   room: room,
                 ),
               ),
             );
           },
-          child: builder(context, room, block),
+          child: builder(context, room),
         );
       },
     );

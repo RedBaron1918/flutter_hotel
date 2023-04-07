@@ -7,11 +7,9 @@ class SmallCard extends StatefulWidget {
   const SmallCard({
     Key? key,
     required this.room,
-    required this.block,
   }) : super(key: key);
 
   final Room? room;
-  final Block? block;
 
   @override
   State<SmallCard> createState() => _SmallCardState();
@@ -26,7 +24,7 @@ class _SmallCardState extends State<SmallCard> {
   }
 
   void _initializenameWithoutPolocy() {
-    String nameWithoutPolocy = widget.block?.nameWithoutPolicy ?? '';
+    String nameWithoutPolocy = widget.room?.block?.nameWithoutPolicy ?? '';
     _nameWithoutPolocyShort = nameWithoutPolocy.length >= 13
         ? "${nameWithoutPolocy.substring(0, 13)}..."
         : nameWithoutPolocy;
@@ -70,7 +68,7 @@ class _SmallCardState extends State<SmallCard> {
                       height: 4,
                     ),
                     TextContainer(
-                        text: "\$${widget.block?.minPrice?.price}",
+                        text: "\$${widget.room?.block?.minPrice?.price}",
                         fontSize: 11),
                   ],
                 ),

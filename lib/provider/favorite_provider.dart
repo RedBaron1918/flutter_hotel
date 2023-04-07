@@ -1,31 +1,39 @@
+import 'package:hotelflutter/utils/service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import '../model/models.dart';
 
-void saveFavorites(List<Room> hotels, List<Block> blocks) async {
+const String cacheKey = 'favoriteIds';
+
+void saveFavorite(String roomId) async {
   final prefs = await SharedPreferences.getInstance();
-  prefs.setString('hotels', jsonEncode(hotels));
-  prefs.setString('blocks', jsonEncode(blocks));
+  final List<String> favorites = prefs.containsKey(cacheKey)
+      ? prefs.getStringList(cacheKey) as List<String>
+      : <String>[];
+
+  favorites.contains(roomId) ? favorites.remove(roomId) : favorites.add(roomId);
+
+  print(favorites);
+  prefs.setStringList(cacheKey, favorites);
 }
 
-Future<List<Room>> getFavoriteHotels() async {
-  final prefs = await SharedPreferences.getInstance();
-  final hotelsString = prefs.getString('hotels');
-  if (hotelsString != null) {
-    return List<Room>.from(
-        jsonDecode(hotelsString).map((x) => Room.fromJson(x)));
-  } else {
-    return [];
-  }
+Future<bool> isFavorite(Room room) async {
+  return (await getFavorites()).contains(room);
 }
 
-Future<List<Block>> getFavoriteBlocks() async {
+Future<List<Room?>> getFavorites() async {
   final prefs = await SharedPreferences.getInstance();
-  final blocksString = prefs.getString('blocks');
-  if (blocksString != null) {
-    return List<Block>.from(
-        jsonDecode(blocksString).map((x) => Block.fromJson(x)));
-  } else {
-    return [];
-  }
+  final favorites = prefs.containsKey(cacheKey)
+      ? prefs.getStringList(cacheKey) as List<String>
+      : <String>[];
+
+  return hotelListResponse!.rooms!.entries
+      .map((element) {
+        if (favorites.contains(element.key)) {
+          return element.value;
+        }
+      })
+      .toList()
+      .where((element) => element != null)
+      .toList();
 }

@@ -9,11 +9,9 @@ import '../widgets/text_container.dart';
 class DetailWidget extends StatefulWidget {
   const DetailWidget({
     Key? key,
-    required this.block,
     required this.room,
   }) : super(key: key);
 
-  final Block? block;
   final Room? room;
 
   @override
@@ -94,15 +92,12 @@ class _DetailWidgetState extends State<DetailWidget> {
             ),
           ),
           Positioned(
-              right: 10,
-              top: 10,
-              child: ProviderIcon(room: widget.room!, block: widget.block!)),
+              right: 10, top: 10, child: ProviderIcon(room: widget.room!)),
           Positioned(
             bottom: 0,
             left: 0,
             right: 0,
             child: CardDetail(
-              block: widget.block!,
               room: widget.room,
             ),
           )
@@ -113,9 +108,8 @@ class _DetailWidgetState extends State<DetailWidget> {
 }
 
 class CardDetail extends StatelessWidget {
-  const CardDetail({super.key, required this.block, this.room});
+  const CardDetail({super.key, this.room});
 
-  final Block block;
   final Room? room;
 
   @override
@@ -170,7 +164,7 @@ class CardDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${block.nameWithoutPolicy}",
+                "${room?.block?.nameWithoutPolicy}",
                 style: const TextStyle(
                   color: Color(0xFF333333),
                   fontWeight: FontWeight.w300,
@@ -178,7 +172,7 @@ class CardDetail extends StatelessWidget {
                 ),
               ),
               TextContainer(
-                text: "\$${block.minPrice?.price}",
+                text: "\$${room?.block?.minPrice?.price}",
                 fontSize: 18,
               ),
             ],

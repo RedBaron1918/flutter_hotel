@@ -8,11 +8,9 @@ class ExploreCard extends StatefulWidget {
   const ExploreCard({
     Key? key,
     required this.room,
-    required this.block,
   }) : super(key: key);
 
   final Room? room;
-  final Block? block;
 
   @override
   State<ExploreCard> createState() => _ExploreCardState();
@@ -45,10 +43,7 @@ class _ExploreCardState extends State<ExploreCard> {
                   fit: BoxFit.fill,
                 ),
                 Positioned(
-                    top: 8,
-                    right: 8,
-                    child:
-                        ProviderIcon(room: widget.room!, block: widget.block!)),
+                    top: 8, right: 8, child: ProviderIcon(room: widget.room!)),
               ],
             ),
             const SizedBox(
@@ -63,7 +58,7 @@ class _ExploreCardState extends State<ExploreCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        widget.block?.nameWithoutPolicy ?? '',
+                        widget.room?.block?.nameWithoutPolicy ?? '',
                         style: const TextStyle(
                           color: Color(0xFF333333),
                           fontSize: 20,
@@ -71,7 +66,7 @@ class _ExploreCardState extends State<ExploreCard> {
                         ),
                       ),
                       TextContainer(
-                        text: "\$${widget.block?.minPrice?.price}",
+                        text: "\$${widget.room?.block?.minPrice?.price}",
                         fontSize: 14,
                       ),
                     ],

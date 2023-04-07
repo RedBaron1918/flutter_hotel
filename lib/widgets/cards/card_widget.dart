@@ -9,11 +9,9 @@ class CardWidget extends StatefulWidget {
   const CardWidget({
     Key? key,
     required this.room,
-    required this.block,
   }) : super(key: key);
 
   final Room? room;
-  final Block? block;
 
   @override
   State<CardWidget> createState() => _CardWidgetState();
@@ -79,10 +77,7 @@ class _CardWidgetState extends State<CardWidget> {
                   ),
                 ),
                 Positioned(
-                    top: 8,
-                    right: 8,
-                    child:
-                        ProviderIcon(room: widget.room!, block: widget.block!)),
+                    top: 8, right: 8, child: ProviderIcon(room: widget.room!)),
               ],
             ),
             const SizedBox(
@@ -94,7 +89,7 @@ class _CardWidgetState extends State<CardWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.block?.nameWithoutPolicy ?? '',
+                    widget.room?.block?.nameWithoutPolicy ?? '',
                     style: const TextStyle(
                       color: Color(0xFF333333),
                       fontWeight: FontWeight.w600,
@@ -106,7 +101,8 @@ class _CardWidgetState extends State<CardWidget> {
                   const SizedBox(
                     height: 4,
                   ),
-                  TextContainer(text: "\$${widget.block?.minPrice?.price}"),
+                  TextContainer(
+                      text: "\$${widget.room?.block?.minPrice?.price}"),
                   const SizedBox(
                     height: 4,
                   ),
