@@ -1,6 +1,5 @@
 import 'package:hotelflutter/utils/service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 import '../model/models.dart';
 
 const String cacheKey = 'favoriteIds';
@@ -13,7 +12,6 @@ void saveFavorite(String roomId) async {
 
   favorites.contains(roomId) ? favorites.remove(roomId) : favorites.add(roomId);
 
-  print(favorites);
   prefs.setStringList(cacheKey, favorites);
 }
 

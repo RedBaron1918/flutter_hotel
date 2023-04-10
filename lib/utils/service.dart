@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:hotelflutter/model/cache_response.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../model/hotel_model.dart';
@@ -14,26 +13,26 @@ class Services {
     if (prefs.containsKey(cacheKey)) {
       final cache = jsonDecode(prefs.getString(cacheKey)!);
       final expiresAt = DateTime.parse(cache['expiresAt']);
-      print(expiresAt.isAfter(DateTime.now()));
-      // if (expiresAt.isAfter(DateTime.now())) {
-      //   try {
-      //     print(cache['hotelList']['rooms']['32099109']['block']);
-      //     HotelList.fromJson(cache['hotelList']);
-      //   } catch (e) {
-      //     print(e);
-      //   }
-      // }
+      if (expiresAt.isAfter(DateTime.now())) {
+        hotelListResponse =
+            HotelList.fromJson(jsonDecode(cache['hotelList'])[0]);
+
+        return hotelListResponse!;
+      }
     }
 
     final response = await http.get(Uri.parse(hotelUrl));
+
     if (response.statusCode == 200) {
       final decodedResponse = jsonDecode(response.body);
       final hotelList = HotelList.fromJson(decodedResponse[0]);
+
       prefs.setString(
           cacheKey,
           jsonEncode({
-            'expiresAt': DateTime.now().add(Duration(hours: 1)).toString(),
-            'hotelList': hotelList.toJson()
+            'expiresAt':
+                DateTime.now().add(const Duration(hours: 1)).toString(),
+            'hotelList': response.body
           }));
 
       hotelListResponse = hotelList;

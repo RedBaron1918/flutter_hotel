@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotelflutter/provider/favorite_provider.dart'
     as favorite_provider;
-import 'package:provider/provider.dart';
 import '../../model/models.dart';
 
 class ProviderIcon extends StatefulWidget {
@@ -22,7 +21,7 @@ class ProviderIcon extends StatefulWidget {
   final Room room;
 
   @override
-  _ProviderIconState createState() => _ProviderIconState();
+  State<ProviderIcon> createState() => _ProviderIconState();
 }
 
 class _ProviderIconState extends State<ProviderIcon> {

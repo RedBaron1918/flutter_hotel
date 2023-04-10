@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hotelflutter/pages/detail_widget.dart';
 import 'package:hotelflutter/provider/favorite_provider.dart';
 import 'package:hotelflutter/widgets/cards/card_widget.dart';
-import 'package:provider/provider.dart';
 
 import '../model/models.dart';
 import '../widgets/icons/circle_icon.dart';
@@ -27,7 +26,6 @@ class _FavoritePageState extends State<FavoritePage> {
 
   void _loadFavorites() async {
     rooms = await getFavorites();
-    print(rooms);
     setState(() {});
   }
 

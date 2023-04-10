@@ -23,9 +23,7 @@ class FutureWidget extends StatelessWidget {
         }
         if (snapshot.connectionState == ConnectionState.waiting ||
             snapshot.connectionState == ConnectionState.none) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Align(child: CircularProgressIndicator());
         }
 
         return builder(snapshot);

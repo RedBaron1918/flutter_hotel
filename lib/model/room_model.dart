@@ -27,7 +27,7 @@ class Room {
   PrivateBathroomHighlight? privateBathroomHighlight;
   Block? block;
 
-  factory Room.fromJson(Map<String, dynamic> json, Block block) => Room(
+  factory Room.fromJson(Map<String, dynamic> json) => Room(
         photosMaySorted: json["photos_may_sorted"],
         highlights: json["highlights"] == null
             ? []
@@ -54,7 +54,7 @@ class Room {
             ? null
             : PrivateBathroomHighlight.fromJson(
                 json["private_bathroom_highlight"]),
-        block: block,
+        block: json['block'],
       );
 
   Map<String, dynamic> toJson() => {
